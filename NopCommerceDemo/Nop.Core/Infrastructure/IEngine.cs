@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Infrastructure
 {
+    // TODO: Not Finished
     /// <summary>
     /// Classes implementing this interface can serve as a portal for the 
     /// various services composing the Nop engine. Edit functionality, modules

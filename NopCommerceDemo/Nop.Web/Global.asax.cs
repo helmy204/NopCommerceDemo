@@ -7,6 +7,7 @@ using System.Web.SessionState;
 
 namespace Nop.Web
 {
+    // TODO: Not Finished
     public class MvcApplication : System.Web.HttpApplication
     {
 
