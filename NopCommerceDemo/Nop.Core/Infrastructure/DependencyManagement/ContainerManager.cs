@@ -10,7 +10,6 @@ using System.Web;
 
 namespace Nop.Core.Infrastructure.DependencyManagement
 {
-    // TODO: Not Finished
     public class ContainerManager
     {
         private readonly IContainer _container;
@@ -85,15 +84,48 @@ namespace Nop.Core.Infrastructure.DependencyManagement
                     foreach (var parameter in parameters)
                     {
                         var service = Resolve(parameter.ParameterType, scope);
-//                        if(service==null) throw new 
+                        if (service == null) throw new NopException("Unknown dependency");
+                        parameterInstances.Add(service);
                     }
+                    return Activator.CreateInstance(type, parameterInstances.ToArray());
+                }
+                catch (NopException)
+                {
+
                 }
             }
+            throw new NopException("No constructor was found that had all the dependenxies satisfied.");
         }
 
+        public bool TryResolve(Type serviceType, ILifetimeScope scope,out object instance)
+        {
+            if(scope==null)
+            {
+                // no scope specified
+                scope = Scope();
+            }
+            return scope.TryResolve(serviceType, out instance);
+        }
 
+        public bool IsRegistered(Type serviceType,ILifetimeScope scope=null)
+        {
+            if (scope == null)
+            {
+                // no scope specified
+                scope = Scope();
+            }
+            return scope.IsRegistered(serviceType);
+        }
 
-
+        public object ResolveOptional(Type serviceType, ILifetimeScope scope = null)
+        {
+            if (scope == null)
+            {
+                // no scope specified
+                scope = Scope();
+            }
+            return scope.ResolveOptional(serviceType);
+        }
 
         public ILifetimeScope Scope()
         {
