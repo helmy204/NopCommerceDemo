@@ -16,9 +16,14 @@ namespace Nop.Core.Infrastructure
 
         #region Methods
 
-        //// really is the same as using lock(this) on the whole method
-        //[MethodImpl(MethodImplOptions.Synchronized)]
-        //public static 
+        // really is the same as using lock(this) on the whole method
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static IEngine Initialize(bool forceRecreate)
+        {
+            //if(Singleton)
+
+            return null;
+        }
 
         #endregion Methods
 
