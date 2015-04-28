@@ -13,6 +13,7 @@ namespace Nop.Web
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            // Initialize engine context
 
         }
 
