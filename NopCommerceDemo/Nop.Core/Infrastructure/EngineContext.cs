@@ -37,6 +37,11 @@ namespace Nop.Core.Infrastructure
         #region Methods
 
         // really is the same as using lock(this) on the whole method
+        /// <summary>
+        /// Initialize a static instance of the Nop factory.
+        /// </summary>
+        /// <param name="forceRecreate">Creates a new factory instance even though the factory has been previously initialized.</param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static IEngine Initialize(bool forceRecreate)
         {
@@ -46,8 +51,7 @@ namespace Nop.Core.Infrastructure
                 Singleton<IEngine>.Instance = CreateEngineInstance(config);
                 Singleton<IEngine>.Instance.Initialize(config);
             }
-
-            return null;
+            return Singleton<IEngine>.Instance;
         }
 
         #endregion Methods

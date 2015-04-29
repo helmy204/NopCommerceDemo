@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nop.Core.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,13 @@ using System.Web.SessionState;
 namespace Nop.Web
 {
     // TODO: Not Finished
-    public class MvcApplication : System.Web.HttpApplication
+    public class Global : System.Web.HttpApplication
     {
 
         protected void Application_Start(object sender, EventArgs e)
         {
             // Initialize engine context
+            EngineContext.Initialize(false);
 
         }
 
