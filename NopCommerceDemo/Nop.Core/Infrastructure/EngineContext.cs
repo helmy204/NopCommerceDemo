@@ -44,6 +44,7 @@ namespace Nop.Core.Infrastructure
             {
                 var config = ConfigurationManager.GetSection("NopConfig") as NopConfig;
                 Singleton<IEngine>.Instance = CreateEngineInstance(config);
+                Singleton<IEngine>.Instance.Initialize(config);
             }
 
             return null;
