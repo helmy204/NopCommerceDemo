@@ -81,6 +81,7 @@
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />
     <Compile Include="Infrastructure\EngineContext.cs" />
     <Compile Include="Infrastructure\IEngine.cs" />
+    <Compile Include="Infrastructure\NopEngine.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="NopException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
