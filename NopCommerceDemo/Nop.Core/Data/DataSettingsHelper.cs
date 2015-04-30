@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Data
 {
-    class DataSettingsHelper
+    public partial class DataSettingsHelper
     {
+        private static bool? _databaseIsInstalled;
+
+        //public static bool DatabaseIsInstalled()
+        //{
+        //    if (!_databaseIsInstalled.HasValue)
+        //    {
+        //        //var manager=new DataSett
+        //    }
+        //}
     }
 }
