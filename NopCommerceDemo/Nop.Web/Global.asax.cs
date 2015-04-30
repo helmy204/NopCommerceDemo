@@ -17,6 +17,8 @@ namespace Nop.Web
             // Initialize engine context
             EngineContext.Initialize(false);
 
+            //bool databaseInstalled=
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
