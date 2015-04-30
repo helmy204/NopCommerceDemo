@@ -45,7 +45,12 @@
     <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Nop.Core\Nop.Core.csproj">
+      <Project>{ccf6bf5d-73fa-446d-8f6d-8d89d2c3f7e2}</Project>
+      <Name>Nop.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

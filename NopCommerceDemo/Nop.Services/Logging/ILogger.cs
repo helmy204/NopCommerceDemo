@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nop.Core.Domain.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,14 @@ namespace Nop.Services.Logging
     /// </summary>
     public partial interface ILogger
     {
-        //bool IsEnabled(Log)
+        /// <summary>
+        /// Determines whether a log level is enabled
+        /// </summary>
+        /// <param name="level">Log level</param>
+        /// <returns>Result</returns>
+        bool IsEnabled(LogLevel level);
+
+        //void DeleteLog(Log log);
     }
 }
 
