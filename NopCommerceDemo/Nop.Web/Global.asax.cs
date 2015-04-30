@@ -1,4 +1,5 @@
 ﻿using Nop.Core.Data;
+using Nop.Core.Domain.Common;
 using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -67,9 +68,15 @@ namespace Nop.Web
 
             // ignore 404 HTTP errors
             var httpException = exc as HttpException;
-            //if(httpException!=null&&httpException.GetHttpCode()==404 &&
-            //    !EngineContext.Current.Resolve)
-            
+            if (httpException != null && httpException.GetHttpCode() == 404 &&
+                !EngineContext.Current.Resolve<CommonSettings>().Log404Errors)
+                return;
+
+            try
+            {
+                // log
+                //var logger = EngineContext.Current.Resolve<ILogger>();
+            }
 
             // TODO: HERE
         }
