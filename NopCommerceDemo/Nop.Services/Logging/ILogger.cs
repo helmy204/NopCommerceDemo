@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Logging
 {
+    // TODO: Not Finished
     /// <summary>
     /// Logger interface
     /// </summary>
     public partial interface ILogger
     {
+        //bool IsEnabled(Log)
     }
 }
 

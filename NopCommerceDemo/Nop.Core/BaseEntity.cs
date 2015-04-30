@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Core
 {
-    class BaseEntity
+    // TODO: Not Finished
+    /// <summary>
+    /// Base class for entities
+    /// </summary>
+    public abstract partial class BaseEntity
     {
     }
 }
