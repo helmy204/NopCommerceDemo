@@ -1,6 +1,7 @@
 ﻿using Nop.Core.Data;
 using Nop.Core.Domain.Common;
 using Nop.Core.Infrastructure;
+using Nop.Services.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace Nop.Web
             try
             {
                 // log
-                //var logger = EngineContext.Current.Resolve<ILogger>();
+                var logger = EngineContext.Current.Resolve<ILogger>();
             }
 
             // TODO: HERE

@@ -85,6 +85,10 @@
       <Project>{ccf6bf5d-73fa-446d-8f6d-8d89d2c3f7e2}</Project>
       <Name>Nop.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nop.Services\Nop.Services.csproj">
+      <Project>{bddb7005-1284-46f5-a9ec-66b82170d232}</Project>
+      <Name>Nop.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
