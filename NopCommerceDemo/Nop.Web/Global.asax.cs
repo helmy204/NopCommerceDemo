@@ -1,10 +1,13 @@
-﻿using Nop.Core.Infrastructure;
+﻿using Nop.Core.Data;
+using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.SessionState;
+
 
 namespace Nop.Web
 {
@@ -17,7 +20,15 @@ namespace Nop.Web
             // Initialize engine context
             EngineContext.Initialize(false);
 
-            //bool databaseInstalled=
+            bool databaseInstalled = DataSettingsHelper.DatabaseIsInstalled();
+            if (databaseInstalled)
+            {
+                // remove all view engines
+                ViewEngines.Engines.Clear();
+                // except the themeable razor view engine we use
+                // TODO: Here
+                //ViewEngines.Engines.Add(new ThemeableRazorViewEngine();
+            }
 
         }
 
