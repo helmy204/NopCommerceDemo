@@ -56,5 +56,24 @@ namespace Nop.Core.Infrastructure
 
         #endregion Methods
 
+        #region Properties
+
+        /// <summary>
+        /// Gets the singleton Nop engine used to access Nop services.
+        /// </summary>
+        public static IEngine Current
+        {
+            get
+            {
+                if(Singleton<IEngine>.Instance==null)
+                {
+                    Initialize(false);
+                }
+                return Singleton<IEngine>.Instance;
+            }
+        }
+
+        #endregion Properties
+
     }
 }

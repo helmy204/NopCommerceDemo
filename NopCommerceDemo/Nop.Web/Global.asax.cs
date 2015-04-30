@@ -32,12 +32,12 @@ namespace Nop.Web
 
         }
 
-        protected void Session_Start(object sender, EventArgs e)
+        protected void Application_BeginRequest(object sender, EventArgs e)
         {
 
         }
 
-        protected void Application_BeginRequest(object sender, EventArgs e)
+        protected void Application_EndRequest(object sender, EventArgs e)
         {
 
         }
@@ -49,17 +49,29 @@ namespace Nop.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            var exception = Server.GetLastError();
 
+            // log error
+            LogException(exception);
+
+            // TODO: HERE
         }
 
-        protected void Session_End(object sender, EventArgs e)
+        protected void LogException(Exception exc)
         {
+            if (exc == null)
+                return;
 
-        }
+            if (!DataSettingsHelper.DatabaseIsInstalled())
+                return;
 
-        protected void Application_End(object sender, EventArgs e)
-        {
+            // ignore 404 HTTP errors
+            var httpException = exc as HttpException;
+            //if(httpException!=null&&httpException.GetHttpCode()==404 &&
+            //    !EngineContext.Current.Resolve)
+            
 
+            // TODO: HERE
         }
     }
 }
