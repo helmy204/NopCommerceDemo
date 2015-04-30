@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Data
 {
+    // TODO: Not finished
     public partial class DataSettingsHelper
     {
         private static bool? _databaseIsInstalled;

@@ -1,12 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 
 namespace Nop.Core.Data
 {
-    class DataSettingsManager
+    // TODO: Not finished
+    public partial class DataSettingsManager
     {
+        protected const char separator = ':';
+        protected const string filename = "Settings.txt";
+
+        /// <summary>
+        /// Maps a virtual path to a physical disk path
+        /// </summary>
+        /// <param name="path">The path to map. E.g. "~/bin"</param>
+        /// <returns>The physical path. E.g. "c:\inetpup\wwwroot\bin"</returns>
+        protected virtual string MapPath(string path)
+        {
+            if (HostingEnvironment.IsHosted)
+            {
+                // hosted
+                return HostingEnvironment.MapPath(path);
+            }
+
+            // not hosted. For example, run in unit test
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
+            return Path.Combine(baseDirectory, path);
+        }
+
+        //public virtual DataS
     }
 }
