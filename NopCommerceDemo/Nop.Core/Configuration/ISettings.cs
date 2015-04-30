@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Configuration
 {
-    interface ISettings
+    public interface ISettings
     {
     }
 }
