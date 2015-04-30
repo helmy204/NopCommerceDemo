@@ -1,4 +1,5 @@
-﻿using Nop.Core.Data;
+﻿using Nop.Core;
+using Nop.Core.Data;
 using Nop.Core.Domain.Common;
 using Nop.Core.Infrastructure;
 using Nop.Services.Logging;
@@ -77,6 +78,8 @@ namespace Nop.Web
             {
                 // log
                 var logger = EngineContext.Current.Resolve<ILogger>();
+                var workContext = EngineContext.Current.Resolve<IWorkContext>();
+                //logger.e
             }
 
             // TODO: HERE

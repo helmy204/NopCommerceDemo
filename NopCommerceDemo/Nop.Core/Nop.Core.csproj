@@ -88,6 +88,7 @@
     <Compile Include="Infrastructure\IEngine.cs" />
     <Compile Include="Infrastructure\NopEngine.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
+    <Compile Include="IWorkContext.cs" />
     <Compile Include="NopException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

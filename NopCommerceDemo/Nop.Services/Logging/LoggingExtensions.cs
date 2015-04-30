@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nop.Core
+namespace Nop.Services.Logging
 {
-    /// <summary>
-    /// Work context
-    /// </summary>
-    public interface IWorkContext
+    class LoggingExtensions
     {
     }
 }

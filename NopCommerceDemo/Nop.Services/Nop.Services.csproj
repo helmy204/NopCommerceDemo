@@ -42,6 +42,7 @@
     <Compile Include="Logging\ILogger.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logging\LoggingExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
