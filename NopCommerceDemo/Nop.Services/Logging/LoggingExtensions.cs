@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Logging
 {
-    class LoggingExtensions
+    // TODO: Not finished
+    public static class LoggingExtensions
     {
+
+        // TODO: Here
+        //public static void Error(this ILogger logger,string message,Exception exception=null)
     }
 }
