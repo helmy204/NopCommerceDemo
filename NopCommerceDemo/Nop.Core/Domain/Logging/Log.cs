@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Domain.Logging
 {
-    class Log
+    /// <summary>
+    /// Represents a log record
+    /// </summary>
+    public partial class Log : BaseEntity
     {
+        
     }
 }

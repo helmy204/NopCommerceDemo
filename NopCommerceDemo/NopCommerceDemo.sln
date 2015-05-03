@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EA8C9D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Services", "Nop.Services\Nop.Services.csproj", "{BDDB7005-1284-46F5-A9EC-66B82170D232}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Web.Framework", "Nop.Web.Framework\Nop.Web.Framework.csproj", "{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,12 +40,17 @@ Global
 		{BDDB7005-1284-46F5-A9EC-66B82170D232}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDDB7005-1284-46F5-A9EC-66B82170D232}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDDB7005-1284-46F5-A9EC-66B82170D232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{65CE65F2-A0A9-4F86-85E7-0AD1A3C0B3C8} = {43061A3B-D3DD-48AF-8898-4134C658EB46}
+		{5CEB7029-1A55-44B7-8DEA-9DC3A8762C82} = {43061A3B-D3DD-48AF-8898-4134C658EB46}
 		{CCF6BF5D-73FA-446D-8F6D-8D89D2C3F7E2} = {90D5CEB7-17DA-4CFA-828A-F3055C676B2F}
 		{BDDB7005-1284-46F5-A9EC-66B82170D232} = {90D5CEB7-17DA-4CFA-828A-F3055C676B2F}
 	EndGlobalSection
