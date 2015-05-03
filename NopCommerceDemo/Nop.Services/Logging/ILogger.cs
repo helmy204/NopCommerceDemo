@@ -21,7 +21,18 @@ namespace Nop.Services.Logging
         /// <returns>Result</returns>
         bool IsEnabled(LogLevel level);
 
-        //void DeleteLog(Log log);
+        /// <summary>
+        /// Deletes a log item
+        /// </summary>
+        /// <param name="log"></param>
+        void DeleteLog(Log log);
+
+        /// <summary>
+        /// Clears a log
+        /// </summary>
+        void ClearLog();
+
+
 
         /// <summary>
         /// Insert a log item
