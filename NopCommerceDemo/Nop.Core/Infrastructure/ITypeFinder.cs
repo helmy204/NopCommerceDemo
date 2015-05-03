@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Infrastructure
 {
-    interface ITypeFinder
+    /// <summary>
+    /// Classes implementing this interface provide information about types
+    /// to various services in the Nop engine.
+    /// </summary>
+    public interface ITypeFinder
     {
     }
 }
