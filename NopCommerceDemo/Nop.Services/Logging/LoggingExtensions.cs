@@ -13,7 +13,6 @@ namespace Nop.Services.Logging
     public static class LoggingExtensions
     {
 
-        // TODO: Here
         public static void Error(this ILogger logger, string message, Exception exception = null, Customer customer = null)
         {
             FilteredLog(logger, LogLevel.Error, message, exception, customer);

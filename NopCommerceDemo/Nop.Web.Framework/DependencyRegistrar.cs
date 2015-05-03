@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
+using Nop.Services.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Nop.Web.Framework
     {
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
-            
 
 
-            //builder.RegisterType<DefaultLogger
+
+            builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
 
         }
 
