@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Nop.Core
 {
-    interface IWebHelper
+    /// <summary>
+    /// 
+    /// </summary>
+    public partial interface IWebHelper
     {
     }
 }
