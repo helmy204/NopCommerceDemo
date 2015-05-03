@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Domain.Customers
 {
-    class Customer
+    /// <summary>
+    /// Represents a customer
+    /// </summary>
+    public partial class Customer : BaseEntity
     {
     }
 }

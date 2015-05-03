@@ -21,6 +21,8 @@ namespace Nop.Services.Logging
         bool IsEnabled(LogLevel level);
 
         //void DeleteLog(Log log);
+
+        //Log
     }
 }
 
