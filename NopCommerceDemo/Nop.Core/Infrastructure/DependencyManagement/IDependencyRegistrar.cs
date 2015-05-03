@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nop.Web.Framework
+namespace Nop.Core.Infrastructure.DependencyManagement
 {
-    public class DependencyRegistrar
+    interface IDependencyRegistrar
     {
     }
 }
