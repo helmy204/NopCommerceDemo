@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Core
 {
-    interface IStoreContext
+    /// <summary>
+    /// Store context
+    /// </summary>
+    public interface IStoreContext
     {
+
     }
 }
