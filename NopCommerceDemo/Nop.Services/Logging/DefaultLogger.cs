@@ -1,4 +1,5 @@
-﻿using Nop.Core.Domain.Common;
+﻿using Nop.Core;
+using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Logging;
 using System;
@@ -15,6 +16,8 @@ namespace Nop.Services.Logging
     public partial class DefaultLogger:ILogger
     {
         #region Fields
+
+        private readonly IWebHelper _webHelper;
 
         private readonly CommonSettings _commonSettings;
 

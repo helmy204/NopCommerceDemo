@@ -14,6 +14,9 @@ namespace Nop.Web.Framework
     {
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
+            // HTTP context and other related stuff
+
+            // web helper
 
 
 
