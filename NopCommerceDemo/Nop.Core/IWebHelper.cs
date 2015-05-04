@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Nop.Core
 {
@@ -58,5 +59,87 @@ namespace Nop.Core
         /// <returns>Store host location</returns>
         string GetStoreHost(bool useSsl);
 
+        /// <summary>
+        /// Gets store location
+        /// </summary>
+        /// <returns>Store location</returns>
+        string GetStoreLocation();
+
+        /// <summary>
+        /// Gets store location
+        /// </summary>
+        /// <param name="useSsl">Use SSL</param>
+        /// <returns>Store location</returns>
+        string GetStoreLocation(bool useSsl);
+
+        /// <summary>
+        /// Returns true if the requested resource is one of the typical
+        /// resources that needn't be processed by cms engine.
+        /// </summary>
+        /// <param name="request">HTTP Request</param>
+        /// <returns>True if the request targets a static resource file.</returns>
+        /// <remarks>
+        /// These are file extensions considered to be static resources:
+        /// .css
+        /// .gif
+        /// .png
+        /// .jpg
+        /// .jpeg
+        /// .js
+        /// .axd
+        /// .ashx
+        /// </remarks>
+        bool IsStaticResource(HttpRequest request);
+
+        /// <summary>
+        /// Maps a virtual path to a physical path.
+        /// </summary>
+        /// <param name="path">The path to map. E.g. "~/bin"</param>
+        /// <returns>The physical path. E.g. "c:\inetpup\wwwroot\bin"</returns>
+        string MapPath(string path);
+
+        /// <summary>
+        /// Modifies query string
+        /// </summary>
+        /// <param name="url">Url to modify</param>
+        /// <param name="queryStringModification">Query string modification</param>
+        /// <param name="anchor">Anchor</param>
+        /// <returns>New url</returns>
+        string ModifyQueryString(string url, string queryStringModification, string anchor);
+
+        /// <summary>
+        /// Remove query string from url
+        /// </summary>
+        /// <param name="url">Url to modify</param>
+        /// <param name="queryString">Query string to remove</param>
+        /// <returns>New url</returns>
+        string RemoveQueryString(string url, string queryString);
+
+        /// <summary>
+        /// Gets query string value by name
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name">Parameter name</param>
+        /// <returns>Query string value</returns>
+        T QueryString<T>(string name);
+
+        /// <summary>
+        /// Restart application domain
+        /// </summary>
+        /// <param name="makeRedirect">A value indicating whether we should made redirection after restart</param>
+        /// <param name="redirectUrl">Redirect URL; empty string if you want to redirect to the current page URL</param>
+        void RestartAppDomain(bool makeRedirect = false, string redirectUrl = "");
+
+        /// <summary>
+        /// Gets a value that indicates whether the client is being redirected
+        /// to a new location
+        /// </summary>
+        bool IsRequestBeingRedirected { get; }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether the client
+        /// is being redirected to a new location using POST
+        /// </summary>
+        bool IsPostBeginDone { get; set; }
     }
 }
