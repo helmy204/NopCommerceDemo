@@ -13,7 +13,7 @@ namespace Nop.Services.Logging
     /// <summary>
     /// Default logger
     /// </summary>
-    public partial class DefaultLogger:ILogger
+    public partial class DefaultLogger : ILogger
     {
         #region Fields
 
@@ -91,10 +91,12 @@ namespace Nop.Services.Logging
 
             var log = new Log
             {
-                LogLevel=logLevel,
-                ShortMessage=shortMessage,
-                FullMessage=fullMessage//,
-                //IpAddress
+                LogLevel = logLevel,
+                ShortMessage = shortMessage,
+                FullMessage = fullMessage,
+                IpAddress = _webHelper.GetCurrentIpAddress(),
+                Customer = customer//,
+                //PageUrl
             };
 
 

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Nop.Core;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
 using Nop.Services.Logging;
@@ -17,7 +18,7 @@ namespace Nop.Web.Framework
             // HTTP context and other related stuff
 
             // web helper
-
+            builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
 
 
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();

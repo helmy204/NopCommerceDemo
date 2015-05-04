@@ -95,6 +95,7 @@
     <Compile Include="Infrastructure\NopEngine.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="IPagedList.cs" />
+    <Compile Include="IStoreContext.cs" />
     <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
     <Compile Include="NopException.cs" />
