@@ -54,9 +54,19 @@ namespace Nop.Core
             this._httpContext = httpContext;
         }
 
+        /// <summary>
+        /// Get URL referrer
+        /// </summary>
+        /// <returns>URL referrer</returns>
         public string GetUrlReferrer()
         {
-            throw new NotImplementedException();
+            string referrerUrl = string.Empty;
+
+            // URL referrer is null in some case (for example, in IE 8)
+            if (IsRequestAvailable(_httpContext) && _httpContext.Request.UrlReferrer != null)
+                referrerUrl = _httpContext.Request.UrlReferrer.PathAndQuery;
+
+            return referrerUrl;
         }
 
         /// <summary>
@@ -189,7 +199,7 @@ namespace Nop.Core
 
                 // put this method in try-catch
                 // as described here  http://www.nopcommerce.com/boards/t/21356/multi-store-roadmap-lets-discuss-update-done.aspx?p=6#90196
-                if(_httpContext.Request.ServerVariables[name]!=null)
+                if (_httpContext.Request.ServerVariables[name] != null)
                 {
                     result = _httpContext.Request.ServerVariables[name];
                 }
@@ -224,14 +234,66 @@ namespace Nop.Core
                 // let's resolve IWorkContext here.
                 // Do not inject it via constructor because it'll
                 // cause circular refrences
-                //var storeContext=EngineContext.Current.Resolve<IStoreContext
+                var storeContext = EngineContext.Current.Resolve<IStoreContext>();
+                var currentStore = storeContext.CurrentStore;
+                if (currentStore == null)
+                    throw new Exception("Current store cannot be loaded");
+
+                if (String.IsNullOrWhiteSpace(httpHost))
+                {
+                    // HTTP_HOST variable is not available.
+                    // This scenario is possible only when HttpContext is not available
+                    // (for example, running in a schedule task)
+                    // in this case use URL of a store entity configured in admin area
+                    result = currentStore.Url;
+                    if (!result.EndsWith("/"))
+                        result += "/";
+                }
+
+                if (useSsl)
+                {
+                    if (!String.IsNullOrWhiteSpace(currentStore.SecureUrl))
+                    {
+                        // Secure URL specified.
+                        // So a store owner don't want it to be detected automatically.
+                        // In this case let's use the specified secure URL
+                        result = currentStore.SecureUrl;
+                    }
+                    else
+                    {
+                        // Secure URL is not specified.
+                        // So a store owner wants it to be detected automatically.
+                        result = result.Replace("http:/", "https:/");
+                    }
+                }
+                else
+                {
+                    if (currentStore.SslEnabled && !String.IsNullOrWhiteSpace(currentStore.SecureUrl))
+                    {
+                        // SSL is enabled in this store and secure URL is specified.
+                        // So a store owner don't want it to be detected automatically.
+                        // In this case let's use the specified non-secure URL
+                        result = currentStore.Url;
+                    }
+                }
 
                 #endregion Databse is installed
             }
             else
             {
-
+                #region Database is not installed
+                if (useSsl)
+                {
+                    // Secure URL is not specified.
+                    // So a store owner wants it to be detected automatically.
+                    result = result.Replace("http:/", "https:/");
+                }
+                #endregion Database is not installed
             }
+
+            if (!result.EndsWith("/"))
+                result += "/";
+            return result.ToLowerInvariant();
         }
 
         #endregion Methods

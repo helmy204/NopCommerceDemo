@@ -17,6 +17,7 @@ namespace Nop.Services.Logging
     {
         #region Fields
 
+        //private readonly IRe
         private readonly IWebHelper _webHelper;
 
         private readonly CommonSettings _commonSettings;
@@ -95,11 +96,14 @@ namespace Nop.Services.Logging
                 ShortMessage = shortMessage,
                 FullMessage = fullMessage,
                 IpAddress = _webHelper.GetCurrentIpAddress(),
-                Customer = customer//,
-                //PageUrl
+                Customer = customer,
+                // TRUE: For using ssl
+                PageUrl = _webHelper.GetThisPageUrl(true),
+                ReferrerUrl=_webHelper.GetUrlReferrer(),
+                CreatedOnUtc=DateTime.UtcNow
             };
 
-
+            
 
 
             return log;
