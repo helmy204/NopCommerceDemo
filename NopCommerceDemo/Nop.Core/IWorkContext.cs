@@ -1,4 +1,5 @@
 ﻿using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Vendors;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,10 @@ namespace Nop.Core
         /// Gets or sets the current vendor (logged-in manager)
         /// </summary>
         Vendor CurrentVendor { get; }
+
+        /// <summary>
+        /// Gets or set current user working language
+        /// </summary>
+        Language WorkingLanguage { get; set; }
     }
 }
