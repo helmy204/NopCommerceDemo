@@ -1,4 +1,5 @@
 ﻿using Nop.Core;
+using Nop.Core.Data;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Logging;
@@ -17,7 +18,7 @@ namespace Nop.Services.Logging
     {
         #region Fields
 
-        //private readonly IRe
+        private readonly IRepository<Log> _logRepository;
         private readonly IWebHelper _webHelper;
 
         private readonly CommonSettings _commonSettings;
@@ -45,6 +46,8 @@ namespace Nop.Services.Logging
         }
 
         #endregion Utilities
+
+        #region Methods
 
         public bool IsEnabled(Core.Domain.Logging.LogLevel level)
         {
@@ -76,6 +79,7 @@ namespace Nop.Services.Logging
             throw new NotImplementedException();
         }
 
+
         /// <summary>
         /// Inserts a log item
         /// </summary>
@@ -99,14 +103,16 @@ namespace Nop.Services.Logging
                 Customer = customer,
                 // TRUE: For using ssl
                 PageUrl = _webHelper.GetThisPageUrl(true),
-                ReferrerUrl=_webHelper.GetUrlReferrer(),
-                CreatedOnUtc=DateTime.UtcNow
+                ReferrerUrl = _webHelper.GetUrlReferrer(),
+                CreatedOnUtc = DateTime.UtcNow
             };
 
-            
-
+            _logRepository.Insert(log);
 
             return log;
         }
+
+        #endregion Methods
+
     }
 }

@@ -19,9 +19,46 @@ namespace Nop.Web.Framework
 
             // web helper
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
+            // user agent helper
 
+            // controllers
+
+            // data layer
+
+            // plugins
+
+            // cache manager
+
+            // work context
+            builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
+            // store context
+
+            // services
+
+            // pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            // pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
 
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
+
+
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+            
+            // Register event consumers
 
         }
 
