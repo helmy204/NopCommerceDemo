@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nop.Core.Domain.Customers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,17 @@ namespace Nop.Core
     /// </summary>
     public interface IWorkContext
     {
+        /// <summary>
+        /// Gets or sets the current customer
+        /// </summary>
+        Customer CurrentCustomer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the original customer 
+        /// (in case the current one is impersonated)
+        /// </summary>
+        Customer OriginalCustomerIfImpersonated { get; }
+
+
     }
 }
