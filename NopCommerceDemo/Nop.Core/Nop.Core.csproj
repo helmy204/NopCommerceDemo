@@ -83,6 +83,7 @@
     <Compile Include="Data\DataSettings.cs" />
     <Compile Include="Data\DataSettingsHelper.cs" />
     <Compile Include="Data\DataSettingsManager.cs" />
+    <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\Common\CommonSettings.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
