@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Nop.Web.Framework
 {
@@ -16,7 +17,7 @@ namespace Nop.Web.Framework
     {
         #region Fields
 
-        //private readonly HttpContextBase
+        private readonly HttpContextBase _httpContext;
 
         private Customer _cachedCustomer;
 
@@ -32,7 +33,7 @@ namespace Nop.Web.Framework
                     return _cachedCustomer;
 
                 Customer customer = null;
-                
+                //if(_httpContext==null||_httpContext is FakeHttpContext)
 
                 throw new NotImplementedException();
             }
