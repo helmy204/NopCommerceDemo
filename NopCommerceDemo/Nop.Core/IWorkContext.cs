@@ -1,4 +1,5 @@
 ﻿using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Vendors;
 using System;
@@ -35,5 +36,10 @@ namespace Nop.Core
         /// Gets or set current user working language
         /// </summary>
         Language WorkingLanguage { get; set; }
+
+        /// <summary>
+        /// Gets or sets current user working currency
+        /// </summary>
+        Currency WorkingCurrency { get; set; }
     }
 }

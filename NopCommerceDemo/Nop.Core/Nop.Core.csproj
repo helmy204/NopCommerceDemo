@@ -95,6 +95,7 @@
     <Compile Include="Domain\Seo\ISlugSupported.cs" />
     <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
+    <Compile Include="Domain\Tax\TaxDisplayType.cs" />
     <Compile Include="Domain\Vendors\Vendor.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />
     <Compile Include="Infrastructure\DependencyManagement\IDependencyRegistrar.cs" />
