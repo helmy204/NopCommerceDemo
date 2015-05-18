@@ -1,4 +1,5 @@
 ﻿using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Vendors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace Nop.Core
         /// </summary>
         Customer OriginalCustomerIfImpersonated { get; }
 
-
+        /// <summary>
+        /// Gets or sets the current vendor (logged-in manager)
+        /// </summary>
+        Vendor CurrentVendor { get; }
     }
 }
