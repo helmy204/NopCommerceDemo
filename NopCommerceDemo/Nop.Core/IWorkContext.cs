@@ -1,6 +1,7 @@
 ﻿using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Nop.Core
 {
-    // TODO: Not Finished
     /// <summary>
     /// Work context
     /// </summary>
@@ -41,5 +41,15 @@ namespace Nop.Core
         /// Gets or sets current user working currency
         /// </summary>
         Currency WorkingCurrency { get; set; }
+
+        /// <summary>
+        /// Gets or sets current tax display type
+        /// </summary>
+        TaxDisplayType TaxDisplayType { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating whether we're in admin area
+        /// </summary>
+        bool IsAdmin { get; set; }
     }
 }
