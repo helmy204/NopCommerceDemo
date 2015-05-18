@@ -1,5 +1,6 @@
 ﻿using Nop.Core;
 using Nop.Core.Domain.Customers;
+using Nop.Core.Fakes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,14 @@ namespace Nop.Web.Framework
                     return _cachedCustomer;
 
                 Customer customer = null;
-                //if(_httpContext==null||_httpContext is FakeHttpContext)
+                if(_httpContext==null||_httpContext is FakeHttpContext)
+                {
+                    // check whether request is made by a background task
+                    // in this case return built-in customer record for background task
+                    //customer=
+                }
+
+
 
                 throw new NotImplementedException();
             }

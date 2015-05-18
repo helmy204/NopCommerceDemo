@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace Nop.Core.Fakes
+namespace Nop.Services.Customers
 {
-    // TODO: Not Finished
-    public class FakeHttpContext : HttpContextBase
+    interface ICustomerService
     {
     }
 }
