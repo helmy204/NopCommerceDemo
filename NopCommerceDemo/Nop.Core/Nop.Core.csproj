@@ -89,6 +89,7 @@
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Logging\Log.cs" />
     <Compile Include="Domain\Logging\LogLevel.cs" />
+    <Compile Include="Domain\Seo\ISlugSupported.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
     <Compile Include="Domain\Vendors\Vendor.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />
