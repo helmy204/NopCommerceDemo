@@ -1,6 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Fakes;
+using Nop.Services.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Nop.Web.Framework
         #region Fields
 
         private readonly HttpContextBase _httpContext;
+        private readonly ICustomerService _customerService;
 
         private Customer _cachedCustomer;
 
