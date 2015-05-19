@@ -40,7 +40,7 @@ namespace Nop.Web.Framework
                 {
                     // check whether request is made by a background task
                     // in this case return built-in customer record for background task
-                    //customer=
+                    //customer=_customerService.GetCustomerBySystemName
                 }
 
 

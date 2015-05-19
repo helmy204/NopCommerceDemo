@@ -2,6 +2,7 @@
 using Nop.Core;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
+using Nop.Services.Customers;
 using Nop.Services.Logging;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,8 @@ namespace Nop.Web.Framework
             // services
 
             // pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
 
             // pass MemoryCacheManager as cacheManager (cache settings between requests)
 
