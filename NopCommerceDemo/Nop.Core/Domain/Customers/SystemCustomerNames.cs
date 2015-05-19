@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Domain.Customers
 {
-    class SystemCustomerNames
+    public static partial class SystemCustomerNames
     {
+        public static string SearchEngine { get { return "SearchEngine"; } }
+        public static string BackgroundTask { get { return "BackgroundTask"; } }
     }
 }

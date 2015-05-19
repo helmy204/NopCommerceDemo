@@ -36,13 +36,21 @@ namespace Nop.Web.Framework
                     return _cachedCustomer;
 
                 Customer customer = null;
-                if(_httpContext==null||_httpContext is FakeHttpContext)
+                if (_httpContext == null || _httpContext is FakeHttpContext)
                 {
                     // check whether request is made by a background task
                     // in this case return built-in customer record for background task
-                    //customer=_customerService.GetCustomerBySystemName
+                    customer = _customerService.GetCustomerBySystemName(SystemCustomerNames.BackgroundTask);
                 }
 
+                // check whether request is made by a search engine
+                // in this case return built-in customer record for search engines
+                // or comment the following two lines of code in order to
+                // disable this functionality
+                if (customer == null || customer.Deleted || !customer.Active)
+                {
+                    //if(_use)
+                }
 
 
                 throw new NotImplementedException();
