@@ -69,7 +69,7 @@ namespace Nop.Web.Framework
                 // imporsonate user if required (currently user for 'phone order' support)
                 if(customer!=null&&!customer.Deleted&&customer.Active)
                 {
-                    var imporsonatedCustomerId = customer.GetAttribute<int?>(SystemCustomerAttributeNames.ImporsonatedCustomerId);
+                    var imporsonatedCustomerId = customer.GetAttribute<int?>(SystemCustomerAttributeNames.ImpersonatedCustomerId);
                 }
 
                 throw new NotImplementedException();

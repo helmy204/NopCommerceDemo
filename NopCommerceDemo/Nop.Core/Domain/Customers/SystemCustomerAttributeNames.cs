@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Domain.Customers
 {
-    class SystemCustomerAttributeNames
+    public static partial class SystemCustomerAttributeNames
     {
+        // Other attributes
+
+
+
+
+
+
+
+
+
+        public static string ImpersonatedCustomerId { get { return "ImpersonatedCustomerId"; } }
     }
 }
