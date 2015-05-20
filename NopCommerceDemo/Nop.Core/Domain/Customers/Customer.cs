@@ -13,6 +13,17 @@ namespace Nop.Core.Domain.Customers
     public partial class Customer : BaseEntity
     {
 
+
+
+
+        /// <summary>
+        /// Gets or sets the customer Guid
+        /// </summary>
+        public Guid CustomerGuid { get; set; }
+
+
+
+
         /// <summary>
         /// Gets or sets a value indicating whether the customer is active
         /// </summary>

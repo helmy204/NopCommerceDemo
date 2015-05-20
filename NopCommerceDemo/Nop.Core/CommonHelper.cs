@@ -1,4 +1,5 @@
 ﻿using Nop.Core.ComponentModel;
+using Nop.Core.Domain.Shipping;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,12 @@ namespace Nop.Core
                 return new GenericListTypeConverter<decimal>();
             if (type == typeof(List<string>))
                 return new GenericListTypeConverter<string>();
-            //if(type==typeof(Shi))
+            if (type == typeof(ShippingOption))
+                return new ShippingOptionTypeConverter();
+            if (type == typeof(List<ShippingOption>) || type == typeof(IList<ShippingOption>))
+                return new ShippingOptionListTypeConverter();
+
+            return TypeDescriptor.GetConverter(type);
         }
 
         /// <summary>
@@ -42,14 +48,31 @@ namespace Nop.Core
             return To(value, destinationType, CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Converts a value to a destination type.
+        /// </summary>
+        /// <param name="value">The value to convert.</param>
+        /// <param name="destinationType">The type to convert the value to.</param>
+        /// <param name="culture">Culture</param>
+        /// <returns>The converted value.</returns>
         public static object To(object value, Type destinationType, CultureInfo culture)
         {
             if (value != null)
             {
                 var sourceType = value.GetType();
 
-                //TypeConverter destinationConverter=
+                TypeConverter destinationConverter = GetNopCustomTypeConverter(destinationType);
+                TypeConverter sourceConverter = GetNopCustomTypeConverter(sourceType);
+                if (destinationConverter != null && destinationConverter.CanConvertFrom(value.GetType()))
+                    return destinationConverter.ConvertFrom(null, culture, value);
+                if (sourceConverter != null && sourceConverter.CanConvertTo(destinationType))
+                    return sourceConverter.ConvertTo(null, culture, value, destinationType);
+                if (destinationType.IsEnum && value is int)
+                    return Enum.ToObject(destinationType, (int)value);
+                if (!destinationType.IsInstanceOfType(value))
+                    return Convert.ChangeType(value, destinationType, culture);
             }
+            return value;
         }
 
 

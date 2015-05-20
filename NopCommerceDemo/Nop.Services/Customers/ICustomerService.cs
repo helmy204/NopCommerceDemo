@@ -15,6 +15,28 @@ namespace Nop.Services.Customers
     {
         #region Customers
 
+
+        /// <summary>
+        /// Gets a customer
+        /// </summary>
+        /// <param name="customerId">Customer identifier</param>
+        /// <returns>A customer</returns>
+        Customer GetCustomerById(int customerId);
+
+
+
+
+
+        /// <summary>
+        /// Gets a customer by GUID
+        /// </summary>
+        /// <param name="customerGuid">Customer GUID</param>
+        /// <returns>A customer</returns>
+        Customer GetCustomerByGuid(Guid customerGuid);
+
+
+
+
         /// <summary>
         /// Get customer by system role
         /// </summary>

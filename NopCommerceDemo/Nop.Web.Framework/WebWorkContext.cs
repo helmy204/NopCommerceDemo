@@ -2,6 +2,7 @@
 using Nop.Core.Domain.Customers;
 using Nop.Core.Fakes;
 using Nop.Services.Authentication;
+using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
 using System;
@@ -19,6 +20,12 @@ namespace Nop.Web.Framework
     /// </summary>
     public partial class WebWorkContext : IWorkContext
     {
+        #region Const
+
+        private const string CustomerCookieName = "Nop.customer";
+
+        #endregion Const
+
         #region Fields
 
         private readonly HttpContextBase _httpContext;
@@ -30,8 +37,25 @@ namespace Nop.Web.Framework
         private readonly IUserAgentHelper _userAgentHelper;
 
         private Customer _cachedCustomer;
+        private Customer _originalCustomerIfImpersonated;
 
         #endregion Fields
+
+        #region Ctor
+
+        #endregion Ctor
+
+        #region Utilities
+
+        protected virtual HttpCookie GetCustomerCookie()
+        {
+            if (_httpContext == null || _httpContext.Request == null)
+                return null;
+
+            return _httpContext.Request.Cookies[CustomerCookieName];
+        }
+
+        #endregion Utilities
 
         #region Properties
 
@@ -69,7 +93,34 @@ namespace Nop.Web.Framework
                 // imporsonate user if required (currently user for 'phone order' support)
                 if(customer!=null&&!customer.Deleted&&customer.Active)
                 {
-                    var imporsonatedCustomerId = customer.GetAttribute<int?>(SystemCustomerAttributeNames.ImpersonatedCustomerId);
+                    var impersonatedCustomerId = customer.GetAttribute<int?>(SystemCustomerAttributeNames.ImpersonatedCustomerId);
+                    if (impersonatedCustomerId.HasValue && impersonatedCustomerId.Value > 0)
+                    {
+                        var impersonatedCustomer = _customerService.GetCustomerById(impersonatedCustomerId.Value);
+                        if(impersonatedCustomer!=null&&!impersonatedCustomer.Deleted&&impersonatedCustomer.Active)
+                        {
+                            // set impersonated customer
+                            _originalCustomerIfImpersonated = customer;
+                            customer = impersonatedCustomer;
+                        }
+                    }
+                }
+
+                // load guest customer
+                if (customer == null || customer.Deleted || !customer.Active)
+                {
+                    var customerCookie = GetCustomerCookie();
+                    if(customerCookie!=null&&!String.IsNullOrEmpty(customerCookie.Value))
+                    {
+                        Guid customerGuid;
+                        if (Guid.TryParse(customerCookie.Value, out customerGuid))
+                        {
+                            var customerByCookie = _customerService.GetCustomerByGuid(customerGuid);
+                            if(customerByCookie!=null&&
+                                // this customer (from cookie) should not be registered
+                                !customerByCookie.is)
+                        }
+                    }
                 }
 
                 throw new NotImplementedException();

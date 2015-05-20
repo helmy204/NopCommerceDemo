@@ -89,6 +89,7 @@
     <Compile Include="Domain\Common\CommonSettings.cs" />
     <Compile Include="Domain\Common\GenericAttribute.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
+    <Compile Include="Domain\Customers\CustomerExtensions.cs" />
     <Compile Include="Domain\Customers\SystemCustomerAttributeNames.cs" />
     <Compile Include="Domain\Customers\SystemCustomerNames.cs" />
     <Compile Include="Domain\Directory\Currency.cs" />

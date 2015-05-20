@@ -12,13 +12,53 @@ namespace Nop.Services.Customers
     /// <summary>
     /// Customer service
     /// </summary>
-    public partial class CustomerService:ICustomerService
+    public partial class CustomerService : ICustomerService
     {
         #region Fields
 
         private readonly IRepository<Customer> _customerRepository;
 
         #endregion Fields
+
+        /// <summary>
+        /// Gets a customer
+        /// </summary>
+        /// <param name="customerId">Customer identifier</param>
+        /// <returns>A customer</returns>
+        public Customer GetCustomerById(int customerId)
+        {
+            if (customerId == 0)
+                return null;
+
+            return _customerRepository.GetById(customerId);
+        }
+
+
+
+
+
+        /// <summary>
+        /// Gets a customer by GUID
+        /// </summary>
+        /// <param name="customerGuid">Customer GUID</param>
+        /// <returns>A customer</returns>
+        public Customer GetCustomerByGuid(Guid customerGuid)
+        {
+            if (customerGuid == Guid.Empty)
+                return null;
+
+            var query = from c in _customerRepository.Table
+                        where c.CustomerGuid == customerGuid
+                        orderby c.Id
+                        select c;
+
+            var customer = query.FirstOrDefault();
+            return customer;
+        }
+
+
+
+
 
         /// <summary>
         /// Get customer by system name
@@ -37,5 +77,10 @@ namespace Nop.Services.Customers
             var customer = query.FirstOrDefault();
             return customer;
         }
+
+
+
+
+       
     }
 }
