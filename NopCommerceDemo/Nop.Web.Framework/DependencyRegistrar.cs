@@ -3,6 +3,7 @@ using Nop.Core;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
 using Nop.Services.Customers;
+using Nop.Services.Helpers;
 using Nop.Services.Logging;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Nop.Web.Framework
             // web helper
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
             // user agent helper
+            builder.RegisterType<UserAgentHelper>().As<IUserAgentHelper>().InstancePerLifetimeScope();
 
             // controllers
 

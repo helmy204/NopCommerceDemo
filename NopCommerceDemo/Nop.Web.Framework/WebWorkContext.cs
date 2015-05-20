@@ -2,6 +2,7 @@
 using Nop.Core.Domain.Customers;
 using Nop.Core.Fakes;
 using Nop.Services.Customers;
+using Nop.Services.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Nop.Web.Framework
 
         private readonly HttpContextBase _httpContext;
         private readonly ICustomerService _customerService;
+
+        private readonly IUserAgentHelper _userAgentHelper;
 
         private Customer _cachedCustomer;
 
@@ -49,9 +52,15 @@ namespace Nop.Web.Framework
                 // disable this functionality
                 if (customer == null || customer.Deleted || !customer.Active)
                 {
-                    //if(_use)
+                    if (_userAgentHelper.IsSearchEngine())
+                        customer = _customerService.GetCustomerBySystemName(SystemCustomerNames.SearchEngine);
                 }
 
+                // registered user
+                if(customer==null||customer.Deleted||!customer.Active)
+                {
+                    //customer=_au
+                }
 
                 throw new NotImplementedException();
             }
