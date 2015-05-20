@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="CommonHelper.cs" />
+    <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\NopConfig.cs" />
     <Compile Include="Data\DataSettings.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Domain\Logging\Log.cs" />
     <Compile Include="Domain\Logging\LogLevel.cs" />
     <Compile Include="Domain\Seo\ISlugSupported.cs" />
+    <Compile Include="Domain\Shipping\ShippingOption.cs" />
     <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
     <Compile Include="Domain\Tax\TaxDisplayType.cs" />
