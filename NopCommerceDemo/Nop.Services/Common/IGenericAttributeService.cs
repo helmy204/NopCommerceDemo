@@ -17,5 +17,13 @@ namespace Nop.Services.Common
         /// </summary>
         /// <param name="attribute">Attribute</param>
         void DeleteAttribute(GenericAttribute attribute);
+
+        /// <summary>
+        /// Get attributes
+        /// </summary>
+        /// <param name="entityId">Entity identifier</param>
+        /// <param name="keyGroup">Key group</param>
+        /// <returns>Get attributes</returns>
+        IList<GenericAttribute> GetAttributesForEntity(int entityId, string keyGroup);
     }
 }

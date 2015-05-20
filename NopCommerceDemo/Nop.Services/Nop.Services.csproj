@@ -63,6 +63,10 @@
       <Project>{ccf6bf5d-73fa-446d-8f6d-8d89d2c3f7e2}</Project>
       <Name>Nop.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nop.Data\Nop.Data.csproj">
+      <Project>{70a49b3f-a4d4-4241-82c6-77a1d7013131}</Project>
+      <Name>Nop.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
