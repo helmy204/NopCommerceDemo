@@ -85,6 +85,7 @@
     <Compile Include="Data\DataSettingsManager.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\Common\CommonSettings.cs" />
+    <Compile Include="Domain\Common\GenericAttribute.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\SystemCustomerAttributeNames.cs" />
     <Compile Include="Domain\Customers\SystemCustomerNames.cs" />

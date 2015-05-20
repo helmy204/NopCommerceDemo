@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Common
 {
-    interface IGenericAttributeService
+    /// <summary>
+    /// Generic attribute service interface
+    /// </summary>
+    public partial interface IGenericAttributeService
     {
+        //void DeleteAttribute(GenericAttribute)
     }
 }
