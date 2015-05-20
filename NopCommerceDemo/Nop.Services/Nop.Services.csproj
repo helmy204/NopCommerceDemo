@@ -42,6 +42,7 @@
     <Compile Include="Customers\CustomerService.cs" />
     <Compile Include="Customers\ICustomerService.cs" />
     <Compile Include="Helpers\IUserAgentHelper.cs" />
+    <Compile Include="Helpers\UserAgentHelper.cs" />
     <Compile Include="Logging\DefaultLogger.cs" />
     <Compile Include="Logging\ILogger.cs">
       <SubType>Code</SubType>
