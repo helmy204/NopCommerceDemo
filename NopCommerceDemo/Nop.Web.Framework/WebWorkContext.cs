@@ -1,6 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Fakes;
+using Nop.Services.Authentication;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
 using System;
@@ -22,6 +23,9 @@ namespace Nop.Web.Framework
 
         private readonly HttpContextBase _httpContext;
         private readonly ICustomerService _customerService;
+
+
+        private readonly IAuthenticationService _authenticationService;
 
         private readonly IUserAgentHelper _userAgentHelper;
 
@@ -59,7 +63,13 @@ namespace Nop.Web.Framework
                 // registered user
                 if(customer==null||customer.Deleted||!customer.Active)
                 {
-                    //customer=_au
+                    customer = _authenticationService.GetAuthenticatedCustomer();
+                }
+
+                // imporsonate user if required (currently user for 'phone order' support)
+                if(customer!=null&&!customer.Deleted&&customer.Active)
+                {
+                    var imporsonatedCustomerId = customer.GetAttribute<int?>(SystemCustomerAttributeNames.ImporsonatedCustomerId);
                 }
 
                 throw new NotImplementedException();

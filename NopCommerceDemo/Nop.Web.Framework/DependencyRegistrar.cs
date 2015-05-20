@@ -2,6 +2,7 @@
 using Nop.Core;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
+using Nop.Services.Authentication;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
 using Nop.Services.Logging;
@@ -55,6 +56,8 @@ namespace Nop.Web.Framework
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
 
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
+
+            builder.RegisterType<FormsAuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
 
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
 
