@@ -44,6 +44,17 @@ namespace Nop.Services.Customers
         /// <returns>Customer</returns>
         Customer GetCustomerBySystemName(string systemName);
 
+
+
+        /// <summary>
+        /// Insert a guest customer
+        /// </summary>
+        /// <returns>Customer</returns>
+        Customer InsertGuestCustomer();
+
+
+
+
         #endregion Customers
     }
 }

@@ -78,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Caching\Extensions.cs" />
+    <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
     <Compile Include="Configuration\ISettings.cs" />
@@ -90,8 +92,10 @@
     <Compile Include="Domain\Common\GenericAttribute.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerExtensions.cs" />
+    <Compile Include="Domain\Customers\CustomerRole.cs" />
     <Compile Include="Domain\Customers\SystemCustomerAttributeNames.cs" />
     <Compile Include="Domain\Customers\SystemCustomerNames.cs" />
+    <Compile Include="Domain\Customers\SystemCustomerRoleNames.cs" />
     <Compile Include="Domain\Directory\Currency.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Localization\Language.cs" />

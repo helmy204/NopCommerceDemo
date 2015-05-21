@@ -13,6 +13,7 @@ namespace Nop.Core.Domain.Customers
     public partial class Customer : BaseEntity
     {
 
+        private ICollection<CustomerRole> _customerRoles;
 
 
 
@@ -40,5 +41,36 @@ namespace Nop.Core.Domain.Customers
         /// Gets or sets the customer system name
         /// </summary>
         public string SystemName { get; set; }
+
+
+
+        /// <summary>
+        /// Gets or sets the date and time of entity creation
+        /// </summary>
+        public DateTime CreatedOnUtc { get; set; }
+
+
+
+        /// <summary>
+        /// Gets or sets the date and time of last activity
+        /// </summary>
+        public DateTime LastActivityDateUtc { get; set; }
+
+        #region Navigation properties
+
+
+
+        /// <summary>
+        /// Gets or sets the customer roles
+        /// </summary>
+        public virtual ICollection<CustomerRole> CustomerRoles
+        {
+            get { return _customerRoles ?? (_customerRoles = new List<CustomerRole>()); }
+            protected set { _customerRoles = value; }
+        }
+
+
+
+        #endregion Navigation properties
     }
 }

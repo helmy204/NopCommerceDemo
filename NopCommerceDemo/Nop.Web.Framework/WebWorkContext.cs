@@ -116,18 +116,32 @@ namespace Nop.Web.Framework
                         if (Guid.TryParse(customerCookie.Value, out customerGuid))
                         {
                             var customerByCookie = _customerService.GetCustomerByGuid(customerGuid);
-                            if(customerByCookie!=null&&
+                            if (customerByCookie != null &&
                                 // this customer (from cookie) should not be registered
-                                !customerByCookie.is)
+                                !customerByCookie.IsRegistered())
+                                customer = customerByCookie;
                         }
                     }
                 }
 
-                throw new NotImplementedException();
+                // create guest if not exists
+                if(customer==null||customer.Deleted||!customer.Active)
+                {
+                    customer = _customerService.InsertGuestCustomer();
+                }
+
+                // validation
+                if(!customer.Deleted&&customer.Active)
+                {
+                    //SetCus
+                }
+
+                return _cachedCustomer;
             }
             set
             {
-                throw new NotImplementedException();
+                //Set
+                _cachedCustomer = value;
             }
         }
 

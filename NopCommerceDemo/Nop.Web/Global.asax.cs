@@ -79,7 +79,7 @@ namespace Nop.Web
                 // log
                 var logger = EngineContext.Current.Resolve<ILogger>();
                 var workContext = EngineContext.Current.Resolve<IWorkContext>();
-                //logger.Error(exc.Message,exc,workContext.cur)
+                logger.Error(exc.Message, exc, workContext.CurrentCustomer);
             }
             catch (Exception)
             {
