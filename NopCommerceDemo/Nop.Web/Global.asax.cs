@@ -29,15 +29,64 @@ namespace Nop.Web
                 // remove all view engines
                 ViewEngines.Engines.Clear();
                 // except the themeable razor view engine we use
-                // TODO: Here
                 //ViewEngines.Engines.Add(new ThemeableRazorViewEngine();
             }
 
+
+            // Add some functionality on top of the default ModelMetaProvider
+            //-->>
+
+            // Registering some regular mvc stuff
+            //-->>
+            //-->>
+
+            // fluent validation
+            //-->>
+            //-->>
+
+            // start scheduled tasks
+            //-->>
+            //-->>
+            //-->>
+            //-->>
+
+            // log application start
+            //-->>
+            //-->>
+            //-->>
+            //-->>
+            // log
+            //-->>
+            //-->>
+            //-->>
+            //-->>
+            //-->>
+            // don't throw new exception if occurs
+            //-->>
+            //-->>
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            // ignore static resources
+            var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+            //-->>
+            //-->>
 
+            // keep alive page requested (we ignore it to prevent creating a guest customer records)
+            //-->>
+            //-->>
+            //-->>
+
+            // ensure database is installed
+            if (!DataSettingsHelper.DatabaseIsInstalled())
+            {
+                string installUrl = string.Format("{0}Install", webHelper.GetStoreLocation());
+                if (!webHelper.GetThisPageUrl(false).StartsWith(installUrl, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    this.Response.Redirect(installUrl);
+                }
+            }
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

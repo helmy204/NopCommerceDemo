@@ -38,7 +38,7 @@ namespace Nop.Core.Infrastructure
             // because Build() or Update() method can only be called once on a ContainerBuilder.
 
             // dependencies
-            //-->
+            //var typeFinder=new WebAppTypeFinder
             builder = new ContainerBuilder();
             builder.RegisterInstance(config).As<NopConfig>().SingleInstance();
             builder.RegisterInstance(this).As<IEngine>().SingleInstance();
@@ -84,19 +84,35 @@ namespace Nop.Core.Infrastructure
             //-->
         }
 
+        /// <summary>
+        /// Resolve dependencies
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <returns></returns>
+        public T Resolve<T>() where T : class
+        {
+            return ContainerManager.Resolve<T>();
+        }
+
         #endregion Methods
 
-        public DependencyManagement.ContainerManager ContainerManager
+        #region Properties
+
+        /// <summary>
+        /// Container manager
+        /// </summary>
+        public ContainerManager ContainerManager
         {
-            get { throw new NotImplementedException(); }
+            get { return _containerManager; }
         }
+
+        #endregion Properties
 
        
 
-        public T Resolve<T>() where T : class
-        {
-            throw new NotImplementedException();
-        }
+       
+
+        
 
         public object Resolve(Type type)
         {
