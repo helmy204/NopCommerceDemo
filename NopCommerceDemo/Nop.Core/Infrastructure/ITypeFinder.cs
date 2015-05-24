@@ -16,7 +16,7 @@ namespace Nop.Core.Infrastructure
         IList<Assembly> GetAssemblies();
 
         // Concrete class is nothing but normal class.
-        IEnumerable<Type> FindClasswsOfType(Type assignTypeFrom, bool onlyConcreteClassess = true);
+        IEnumerable<Type> FindClassesOfType(Type assignTypeFrom, bool onlyConcreteClassess = true);
 
         IEnumerable<Type> FindClassesOfType(Type assignTypeFrom, IEnumerable<Assembly> assemblies, bool onlyConcreteClasses = true);
 
