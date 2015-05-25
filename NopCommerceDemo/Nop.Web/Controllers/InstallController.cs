@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nop.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,22 @@ namespace Nop.Web.Controllers
 {
     public class InstallController : Controller
     {
-        //
-        // GET: /Install/
+        #region Methods
+
         public ActionResult Index()
         {
+            if (DataSettingsHelper.DatabaseIsInstalled())
+                return RedirectToRoute("HomePage");
+
+            // set page timeout to 5 minutes
+            this.Server.ScriptTimeout = 300;
+
+            //var model=new 
+
+
             return Content("Install");
         }
-	}
+
+        #endregion Methods
+    }
 }
