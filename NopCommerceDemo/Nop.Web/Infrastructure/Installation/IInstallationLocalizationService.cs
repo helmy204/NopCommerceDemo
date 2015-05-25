@@ -17,5 +17,23 @@ namespace Nop.Web.Infrastructure.Installation
         /// <param name="resourceName">Resource name</param>
         /// <returns>Resource Value</returns>
         string GetResource(string resourceName);
+
+        /// <summary>
+        /// Get current language for the installation page
+        /// </summary>
+        /// <returns>Current language</returns>
+        InstallationLanguage GetCurrentLanguage();
+
+        /// <summary>
+        /// Save a language for the installation page
+        /// </summary>
+        /// <param name="languageCode">Language code</param>
+        void SaveCurrentLanguage(string languageCode);
+
+        /// <summary>
+        /// Get a list of available languages
+        /// </summary>
+        /// <returns>Available installation languages</returns>
+        IList<InstallationLanguage> GetAvailableLanguages();
     }
 }

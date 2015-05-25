@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyRegistrar.cs" />
+    <Compile Include="Mvc\BaseNopModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\BaseNopValidator.cs" />
     <Compile Include="WebWorkContext.cs" />
