@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Nop.Web.Infrastructure.Installation
 {
-    interface IInstallationLocalizationService
+    /// <summary>
+    /// Localization service for installation process
+    /// </summary>
+    public partial interface IInstallationLocalizationService
     {
+        /// <summary>
+        /// Get locale resource value
+        /// </summary>
+        /// <param name="resourceName">Resource name</param>
+        /// <returns>Resource Value</returns>
+        string GetResource(string resourceName);
     }
 }
