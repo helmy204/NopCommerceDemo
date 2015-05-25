@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,7 +30,13 @@ namespace Nop.Core.Infrastructure
 
         #region Properties
 
-        //-->>
+        /// <summary>
+        /// The app domain to llok for types in.
+        /// </summary>
+        public virtual AppDomain App
+        {
+            get { return AppDomain.CurrentDomain; }
+        }
 
         /// <summary>
         /// Gets or sets whether Nop should iterate assemblies in 
@@ -155,7 +162,7 @@ namespace Nop.Core.Infrastructure
 
         /// <summary>Gets the assemblies related to the current implementation.</summary>
         /// <returns>A list of assemblies that should be loaded by the Nop factory.</returns>
-        public IList<Assembly> GetAssemblies()
+        public virtual IList<Assembly> GetAssemblies()
         {
             var addedAssemblyNames = new List<string>();
             var assemblies = new List<Assembly>();
@@ -212,8 +219,6 @@ namespace Nop.Core.Infrastructure
             }
         }
 
-
-
         /// <summary>
         /// Check if a dll is one of the shipped dlls that we know don't need to be investigated.
         /// </summary>
@@ -234,6 +239,50 @@ namespace Nop.Core.Infrastructure
         protected virtual bool Matches(string assemblyFullName, string pattern)
         {
             return Regex.IsMatch(assemblyFullName, pattern, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        }
+
+        /// <summary>
+        /// Makes sure matching assemblies in the supplied folder are loaded
+        /// in the app domain.
+        /// </summary>
+        /// <param name="directoryPath">
+        /// The physical path to adirectory containing dlls to load in the app domain.
+        /// </param>
+        protected virtual void LoadMatchingAssemblies(string directoryPath)
+        {
+            var loadedAssemblyNames = new List<string>();
+            foreach (Assembly a in GetAssemblies())
+            {
+                loadedAssemblyNames.Add(a.FullName);
+            }
+
+            if (!Directory.Exists(directoryPath))
+            {
+                return;
+            }
+
+            foreach (string dllPath in Directory.GetFiles(directoryPath,"*.dll"))
+            {
+                try
+                {
+                    var an = AssemblyName.GetAssemblyName(dllPath);
+                    if (Matches(an.FullName) && !loadedAssemblyNames.Contains(an.FullName))
+                    {
+                        App.Load(an);
+                    }
+
+                     //old loading stuff
+                    //Assembly a = Assembly.ReflectionOnlyLoadFrom(dllPath);
+                    //if (Matches(a.FullName) && !loadedAssemblyNames.Contains(a.FullName))
+                    //{
+                    //    App.Load(a.FullName);
+                    //}
+                }
+                catch (BadImageFormatException ex)
+                {
+                    Trace.TraceError(ex.ToString());
+                }
+            }
         }
 
 

@@ -155,11 +155,20 @@ namespace Nop.Core
 
             if (includeQueryString)
             {
-                //string storeHost
+                string storeHost = GetStoreHost(useSsl);
+                if (storeHost.EndsWith("/"))
+                    storeHost = storeHost.Substring(0, storeHost.Length - 1);
+                url = storeHost + _httpContext.Request.RawUrl;
+            }
+            else
+            {
+                if(_httpContext.Request.Url!=null)
+                {
+                    url = _httpContext.Request.Url.GetLeftPart(UriPartial.Path);
+                }
             }
 
-
-
+            url = url.ToLowerInvariant();
             return url;
         }
 
@@ -219,7 +228,7 @@ namespace Nop.Core
         public string GetStoreHost(bool useSsl)
         {
             var result = "";
-            var httpHost = ServerVariables("HTTP-HOST");
+            var httpHost = ServerVariables("HTTP_HOST");
             if (!String.IsNullOrEmpty(httpHost))
             {
                 result = "http://" + httpHost;
@@ -298,15 +307,34 @@ namespace Nop.Core
 
         #endregion Methods
 
-
+        /// <summary>
+        /// Gets store location
+        /// </summary>
+        /// <returns>Store location</returns>
         public string GetStoreLocation()
         {
-            throw new NotImplementedException();
+            bool useSSl = IsCurrentConnectionSecured();
+            return GetStoreLocation(useSSl);
         }
 
+        /// <summary>
+        /// Gets store location
+        /// </summary>
+        /// <param name="useSsl">Use SSL</param>
+        /// <returns>Store location</returns>
         public string GetStoreLocation(bool useSsl)
         {
-            throw new NotImplementedException();
+            //return HostingEnvironment.ApplicationVirtualPath;
+
+            string result = GetStoreHost(useSsl);
+            if (result.EndsWith("/"))
+                result = result.Substring(0, result.Length - 1);
+            if (IsRequestAvailable(_httpContext))
+                result = result + _httpContext.Request.ApplicationPath;
+            if (!result.EndsWith("/"))
+                result += "/";
+
+            return result.ToLowerInvariant();
         }
 
         public bool IsStaticResource(System.Web.HttpRequest request)

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
@@ -17,6 +18,22 @@ namespace Nop.Web
     // TODO: Not Finished
     public class Global : System.Web.HttpApplication
     {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            // register custom routes (plugins, etc)
+            //-->>
+            //-->>
+
+            routes.MapRoute(
+                "Default", // Route name
+                "{controller}/{action}/{id}", // URL with parameters
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "Nop.Web.Controllers" }
+                );
+        }
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -37,8 +54,8 @@ namespace Nop.Web
             //-->>
 
             // Registering some regular mvc stuff
-            //-->>
-            //-->>
+            AreaRegistration.RegisterAllAreas();
+            RegisterRoutes(RouteTable.Routes);
 
             // fluent validation
             //-->>
@@ -81,7 +98,7 @@ namespace Nop.Web
             // ensure database is installed
             if (!DataSettingsHelper.DatabaseIsInstalled())
             {
-                string installUrl = string.Format("{0}Install", webHelper.GetStoreLocation());
+                string installUrl = string.Format("{0}install", webHelper.GetStoreLocation());
                 if (!webHelper.GetThisPageUrl(false).StartsWith(installUrl, StringComparison.InvariantCultureIgnoreCase))
                 {
                     this.Response.Redirect(installUrl);
