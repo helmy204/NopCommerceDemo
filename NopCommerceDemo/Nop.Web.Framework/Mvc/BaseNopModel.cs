@@ -10,8 +10,17 @@ namespace Nop.Web.Framework.Mvc
     /// <summary>
     /// Base nopCommerce model
     /// </summary>
-    //[ModelBinder(typeof(NopModelBinder]
-    class BaseNopModel
+    [ModelBinder(typeof(NopModelBinder))]
+    public partial class BaseNopModel
     {
+        public BaseNopModel()
+        {
+            //this.CustomProperties = new Dictionary<string, object>();
+            //PostInitialize();
+        }
+
+        public virtual void BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+        }
     }
 }
