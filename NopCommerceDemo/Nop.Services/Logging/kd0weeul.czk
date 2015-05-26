@@ -1,0 +1,59 @@
+﻿using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nop.Services.Logging
+{
+    /// <summary>
+    /// Default logger
+    /// </summary>
+    public partial class DefaultLogger:ILogger
+    {
+        public bool IsEnabled(Core.Domain.Logging.LogLevel level)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLog(Core.Domain.Logging.Log log)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearLog()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Core.IPagedList<Core.Domain.Logging.Log> GetAllLogs(DateTime? fromUtc, DateTime? toUtc, string message, Core.Domain.Logging.LogLevel? logLevel, int pageIndex, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Core.Domain.Logging.Log GetLogById(int logId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Core.Domain.Logging.Log> GetLogByIds(int[] logIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Inserts a log item
+        /// </summary>
+        /// <param name="logLevel"></param>
+        /// <param name="shortMessage"></param>
+        /// <param name="fullMessage"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public Log InsertLog(LogLevel logLevel, string shortMessage, string fullMessage = "", Customer customer = null)
+        {
+            
+        }
+    }
+}
