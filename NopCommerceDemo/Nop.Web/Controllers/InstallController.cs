@@ -20,6 +20,11 @@ namespace Nop.Web.Controllers
 
         #region Ctor
 
+        public InstallController(IInstallationLocalizationService locService)
+        {
+            this._locService = locService;
+        }
+
         #endregion Ctor
 
         #region Utilities
