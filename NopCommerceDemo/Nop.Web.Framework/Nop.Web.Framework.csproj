@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckAffiliateAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="CustomerLastActivityAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
