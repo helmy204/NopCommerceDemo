@@ -1,4 +1,7 @@
-﻿using Nop.Core.Infrastructure;
+﻿using Nop.Core;
+using Nop.Core.Infrastructure;
+using Nop.Services.Affiliates;
+using Nop.Services.Customers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +33,18 @@ namespace Nop.Web.Framework
 
                 if (affiliateId > 0)
                 {
-                    //var affiliateService=EngineContext.Current.Resolve<IAffiliateService
+                    var affiliateService = EngineContext.Current.Resolve<IAffiliateService>();
+                    var affiliate = affiliateService.GetAffiliateById(affiliateId);
+                    if (affiliate != null && !affiliate.Deleted && affiliate.Active)
+                    {
+                        var workContext = EngineContext.Current.Resolve<IWorkContext>();
+                        if (workContext.CurrentCustomer.AffiliateId != affiliate.Id)
+                        {
+                            workContext.CurrentCustomer.AffiliateId = affiliate.Id;
+                            var customerService = EngineContext.Current.Resolve<ICustomerService>();
+                            customerService.UpdateCustomer(workContext.CurrentCustomer);
+                        }
+                    }
                 }
             }
         }

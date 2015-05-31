@@ -12,9 +12,12 @@ namespace Nop.Core.Domain.Customers
     /// </summary>
     public partial class Customer : BaseEntity
     {
-
+        //-->>
         private ICollection<CustomerRole> _customerRoles;
-
+        //-->>
+        //-->>
+        //-->>
+        //-->>
 
 
         /// <summary>
@@ -24,6 +27,15 @@ namespace Nop.Core.Domain.Customers
 
 
 
+
+        /// <summary>
+        /// Gets or sets the affiliate identifier
+        /// </summary>
+        public int AffiliateId { get; set; }
+
+        //-->>
+
+        //-->>
 
         /// <summary>
         /// Gets or sets a value indicating whether the customer is active
