@@ -95,6 +95,7 @@
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerExtensions.cs" />
     <Compile Include="Domain\Customers\CustomerRole.cs" />
+    <Compile Include="Domain\Customers\CustomerSettings.cs" />
     <Compile Include="Domain\Customers\SystemCustomerAttributeNames.cs" />
     <Compile Include="Domain\Customers\SystemCustomerNames.cs" />
     <Compile Include="Domain\Customers\SystemCustomerRoleNames.cs" />
