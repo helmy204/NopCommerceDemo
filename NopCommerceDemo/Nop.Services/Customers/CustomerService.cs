@@ -2,6 +2,7 @@
 using Nop.Core.Caching;
 using Nop.Core.Data;
 using Nop.Core.Domain.Customers;
+using Nop.Services.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace Nop.Services.Customers
 
 
         private readonly ICacheManager _cacheManager;
+        private readonly IEventPublisher _eventPublisher;
 
         #endregion Fields
 
@@ -140,7 +142,22 @@ namespace Nop.Services.Customers
             return customer;
         }
 
+        //-->>
 
+        /// <summary>
+        /// Updates the customer
+        /// </summary>
+        /// <param name="customer">Customer</param>
+        public virtual void UpdateCustomer(Customer customer)
+        {
+            if (customer == null)
+                throw new ArgumentNullException("customer");
+
+            _customerRepository.Update(customer);
+
+            // event notification
+            //_eventPublisher.En
+        }
 
 
         /// <summary>
@@ -165,5 +182,8 @@ namespace Nop.Services.Customers
                     return customerRole;
                 });
         }
+
+
+        
     }
 }

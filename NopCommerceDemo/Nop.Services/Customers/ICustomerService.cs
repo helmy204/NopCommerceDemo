@@ -52,6 +52,13 @@ namespace Nop.Services.Customers
         /// <returns>Customer</returns>
         Customer InsertGuestCustomer();
 
+        //-->>
+
+        /// <summary>
+        /// Updates the customer
+        /// </summary>
+        /// <param name="customer"></param>
+        void UpdateCustomer(Customer customer);
 
 
 

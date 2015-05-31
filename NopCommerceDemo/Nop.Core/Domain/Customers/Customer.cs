@@ -42,7 +42,10 @@ namespace Nop.Core.Domain.Customers
         /// </summary>
         public string SystemName { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the last IP address
+        /// </summary>
+        public string LastIpAddress { get; set; }
 
         /// <summary>
         /// Gets or sets the date and time of entity creation
