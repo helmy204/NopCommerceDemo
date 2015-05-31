@@ -1,5 +1,8 @@
-﻿using Nop.Core.Data;
+﻿using Nop.Core;
+using Nop.Core.Data;
+using Nop.Core.Domain.Customers;
 using Nop.Core.Infrastructure;
+using Nop.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +35,18 @@ namespace Nop.Web.Framework
                 return;
 
             var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+            var pageUrl = webHelper.GetThisPageUrl(true);
+            if (!String.IsNullOrEmpty(pageUrl))
+            {
+                var workContext = EngineContext.Current.Resolve<IWorkContext>();
+                var genericAttributeService = EngineContext.Current.Resolve<IGenericAttributeService>();
 
-            base.OnActionExecuting(filterContext);
+                var previousPageUrl = workContext.CurrentCustomer.GetAttribute<string>(SystemCustomerAttributeNames.LastVisitedPage);
+                if (!pageUrl.Equals(previousPageUrl))
+                {
+                    genericAttributeService.SaveAttribute(workContext.CurrentCustomer, SystemCustomerAttributeNames.LastVisitedPage, pageUrl);
+                }
+            }
         }
     }
 }

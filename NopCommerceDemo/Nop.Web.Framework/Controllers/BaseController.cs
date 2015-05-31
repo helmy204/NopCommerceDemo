@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Nop.Web.Framework.Controllers
 {
@@ -11,7 +12,8 @@ namespace Nop.Web.Framework.Controllers
     /// </summary>
     [StoreIpAddress]
     [CustomerLastActivity]
-    class BaseController
+    [StoreLastVisitedPage]
+    public abstract class BaseController : Controller
     {
     }
 }

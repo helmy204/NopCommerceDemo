@@ -8,6 +8,8 @@ namespace Nop.Core.Domain.Customers
 {
     public static partial class SystemCustomerAttributeNames
     {
+        // Form fields
+
         // Other attributes
 
 
@@ -17,7 +19,9 @@ namespace Nop.Core.Domain.Customers
 
 
 
-
+        public static string LastVisitedPage { get { return "LastVisitedPage"; } }
         public static string ImpersonatedCustomerId { get { return "ImpersonatedCustomerId"; } }
+
+        // depends on store
     }
 }
