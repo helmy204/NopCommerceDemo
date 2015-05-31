@@ -156,7 +156,7 @@ namespace Nop.Services.Customers
             _customerRepository.Update(customer);
 
             // event notification
-            //_eventPublisher.En
+            _eventPublisher.EntityUpdated(customer);
         }
 
 
