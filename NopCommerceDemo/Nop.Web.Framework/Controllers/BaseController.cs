@@ -10,6 +10,7 @@ namespace Nop.Web.Framework.Controllers
     /// Base controller
     /// </summary>
     [StoreIpAddress]
+    [CustomerLastActivity]
     class BaseController
     {
     }
