@@ -110,6 +110,7 @@
     <Compile Include="Domain\Stores\Store.cs" />
     <Compile Include="Domain\Tax\TaxDisplayType.cs" />
     <Compile Include="Domain\Vendors\Vendor.cs" />
+    <Compile Include="Events\EntityUpdated.cs" />
     <Compile Include="Fakes\FakeHttpContext.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />
