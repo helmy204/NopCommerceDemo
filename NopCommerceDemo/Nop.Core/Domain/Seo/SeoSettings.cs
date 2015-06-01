@@ -21,7 +21,10 @@ namespace Nop.Core.Domain.Seo
 
 
 
-
+        /// <summary>
+        /// WWW requires (with or without WWW)
+        /// </summary>
+        public WwwRequirement WwwRequirement { get; set; }
 
 
 
