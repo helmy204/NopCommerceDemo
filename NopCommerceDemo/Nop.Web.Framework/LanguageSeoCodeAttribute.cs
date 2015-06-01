@@ -1,4 +1,5 @@
-﻿using Nop.Core.Data;
+﻿using Nop.Core;
+using Nop.Core.Data;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Infrastructure;
 using Nop.Web.Framework.Localization;
@@ -49,7 +50,15 @@ namespace Nop.Web.Framework
             // process current URL
             var pageUrl = filterContext.HttpContext.Request.RawUrl;
             string applicationPath = filterContext.HttpContext.Request.ApplicationPath;
-            //if(pageUrl.Is)
+            if (pageUrl.IsLocalizedUrl(applicationPath, true))
+                // already localized URL
+                return;
+
+            // add language code to URL
+            var workContext = EngineContext.Current.Resolve<IWorkContext>();
+            pageUrl = pageUrl.AddLanguageSeoCodeToRawUrl(applicationPath, workContext.WorkingLanguage);
+            // 301 (permanent) redirection
+            filterContext.Result = new RedirectResult(pageUrl, true);
         }
     }
 }

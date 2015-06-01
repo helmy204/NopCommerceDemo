@@ -11,7 +11,7 @@ namespace Nop.Web.Controllers
     [CheckAffiliate]
     [StoreClosed]
     [PublicStoreAllowNavigation]
-    //-->>
+    [LanguageSeoCode]
     //-->>
     //-->>
     public class BasePublicController : BaseController
