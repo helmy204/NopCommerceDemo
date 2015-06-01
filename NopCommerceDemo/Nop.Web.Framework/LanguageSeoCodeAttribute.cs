@@ -1,4 +1,5 @@
 ﻿using Nop.Core.Data;
+using Nop.Core.Domain.Localization;
 using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,13 @@ namespace Nop.Web.Framework
             if (!DataSettingsHelper.DatabaseIsInstalled())
                 return;
 
-            var localizationSettings=EngineContext.Current.Resolve<
+            var localizationSettings = EngineContext.Current.Resolve<LocalizationSettings>();
+            if (!localizationSettings.SeoFriendlyUrlsForLanguageEnabled)
+                return;
+
+            //// ensures that this route is registered and localizable (LocalizedRoute in RouteProvider.cs)
+            //if (filterContext.RouteData == null || filterContext.RouteData.Route == null || !(filterContext.RouteData.Route is LocalizeRoute))
+            //    return;
         }
     }
 }
