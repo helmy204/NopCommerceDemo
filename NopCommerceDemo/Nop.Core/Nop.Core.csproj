@@ -110,6 +110,7 @@
     <Compile Include="Domain\Security\PermissionRecord.cs" />
     <Compile Include="Domain\Security\SecuritySettings.cs" />
     <Compile Include="Domain\Seo\ISlugSupported.cs" />
+    <Compile Include="Domain\Seo\SeoSettings.cs" />
     <Compile Include="Domain\Shipping\ShippingOption.cs" />
     <Compile Include="Domain\StoreInformationSettings.cs" />
     <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />
