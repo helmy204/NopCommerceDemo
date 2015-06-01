@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Domain.Security
 {
-    class PermissionRecord
+    /// <summary>
+    /// Represents a permission record
+    /// </summary>
+    public class PermissionRecord : BaseEntity
     {
     }
 }

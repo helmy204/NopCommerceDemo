@@ -38,7 +38,7 @@ namespace Nop.Web.Framework
                 return;
 
             var permissionService = EngineContext.Current.Resolve<IPermissionService>();
-            var publicStoreAllowNavigation=permissionService
+            //var publicStoreAllowNavigation=permissionService.Authorize()
         }
     }
 }

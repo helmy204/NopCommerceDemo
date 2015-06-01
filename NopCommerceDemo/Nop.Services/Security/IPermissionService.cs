@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nop.Core.Domain.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,17 @@ namespace Nop.Services.Security
 
         //-->>
 
-        //bool Authorize
+        /// <summary>
+        /// Authorize permission
+        /// </summary>
+        /// <param name="permission">Permission record</param>
+        /// <returns>true - authorized; otherwise, false</returns>
+        bool Authorize(PermissionRecord permission);
+
+        //-->>
+
+        //-->>
+
+        //-->>
     }
 }
