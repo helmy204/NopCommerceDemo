@@ -1,4 +1,6 @@
 ﻿using Nop.Core.Data;
+using Nop.Core.Domain.Seo;
+using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,13 @@ namespace Nop.Web.Framework.Seo
 
             if (!DataSettingsHelper.DatabaseIsInstalled())
                 return;
+            var seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+
+            switch (seoSettings)
+            {
+                default:
+                    break;
+            }
         }
     }
 }
