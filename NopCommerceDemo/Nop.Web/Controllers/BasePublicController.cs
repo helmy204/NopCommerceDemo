@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace Nop.Web.Controllers
 {
     [CheckAffiliate]
-    //-->>
+    [StoreClosed]
     //-->>
     //-->>
     //-->>
