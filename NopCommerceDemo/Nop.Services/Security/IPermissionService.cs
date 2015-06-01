@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Security
 {
-    interface IPermissionService
+    /// <summary>
+    /// Permission service interface
+    /// </summary>
+    public partial interface IPermissionService
     {
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //-->>
+
+        //bool Authorize
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Nop.Core.Data;
+using Nop.Core.Infrastructure;
+using Nop.Services.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +37,8 @@ namespace Nop.Web.Framework
             if (!DataSettingsHelper.DatabaseIsInstalled())
                 return;
 
-            //var permissionService
+            var permissionService = EngineContext.Current.Resolve<IPermissionService>();
+            var publicStoreAllowNavigation=permissionService
         }
     }
 }

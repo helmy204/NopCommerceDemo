@@ -106,6 +106,7 @@
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
     <Compile Include="Domain\Logging\Log.cs" />
     <Compile Include="Domain\Logging\LogLevel.cs" />
+    <Compile Include="Domain\Security\PermissionRecord.cs" />
     <Compile Include="Domain\Seo\ISlugSupported.cs" />
     <Compile Include="Domain\Shipping\ShippingOption.cs" />
     <Compile Include="Domain\StoreInformationSettings.cs" />
