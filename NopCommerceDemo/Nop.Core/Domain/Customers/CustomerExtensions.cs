@@ -47,6 +47,7 @@ namespace Nop.Core.Domain.Customers
             return IsInCustomerRole(customer, SystemCustomerRoleNames.Administrators, onlyActiveCustomerRoles);
         }
 
+
         //-->>
 
         //-->>

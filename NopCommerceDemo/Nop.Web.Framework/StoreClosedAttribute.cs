@@ -1,6 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Domain;
+using Nop.Core.Domain.Customers;
 using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -42,21 +43,20 @@ namespace Nop.Web.Framework
             if (!storeInformationSettings.StoreClosed)
                 return;
 
-            if (
-                // ensure it's not the Login page
-                !(controllerName.Equals("Nop.Web.Controllers.CustomerController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("Login", StringComparison.InvariantCultureIgnoreCase)) &&
-                // ensure it's not the Logout page
-                !(controllerName.Equals("Nop.Web.Controllers.CustomerController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("Logout", StringComparison.InvariantCultureIgnoreCase)) &&
-                // ensure it's not the method (AJAX) for accespting EU cookie law
-                !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("EuCookieLawAccept", StringComparison.InvariantCultureIgnoreCase)) &&
-                // ensure it's not the store closed pahe
-                !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("StoreClosed", StringComparison.InvariantCultureIgnoreCase)) &&
-                // ensure it's not the hnage language page (request)
-                !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("SetLanguage", StringComparison.InvariantCultureIgnoreCase)))
+            if (//ensure it's not the Login page
+               !(controllerName.Equals("Nop.Web.Controllers.CustomerController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("Login", StringComparison.InvariantCultureIgnoreCase)) &&
+                //ensure it's not the Logout page
+               !(controllerName.Equals("Nop.Web.Controllers.CustomerController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("Logout", StringComparison.InvariantCultureIgnoreCase)) &&
+                //ensure it's not the method (AJAX) for accepting EU Cookie law
+               !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("EuCookieLawAccept", StringComparison.InvariantCultureIgnoreCase)) &&
+                //ensure it's not the store closed page
+               !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("StoreClosed", StringComparison.InvariantCultureIgnoreCase)) &&
+                //ensure it's not the change language page (request)
+               !(controllerName.Equals("Nop.Web.Controllers.CommonController", StringComparison.InvariantCultureIgnoreCase) && actionName.Equals("SetLanguage", StringComparison.InvariantCultureIgnoreCase)))
             {
                 if (storeInformationSettings.StoreClosedAllowForAdmins && EngineContext.Current.Resolve<IWorkContext>().CurrentCustomer.IsAdmin())
                 {
-                    // do nothing - allow admin access
+                    //do nothing - allow admin access
                 }
                 else
                 {
