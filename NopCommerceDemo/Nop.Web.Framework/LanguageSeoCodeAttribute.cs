@@ -1,6 +1,7 @@
 ﻿using Nop.Core.Data;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Infrastructure;
+using Nop.Web.Framework.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,14 @@ namespace Nop.Web.Framework
             if (!localizationSettings.SeoFriendlyUrlsForLanguageEnabled)
                 return;
 
-            //// ensures that this route is registered and localizable (LocalizedRoute in RouteProvider.cs)
-            //if (filterContext.RouteData == null || filterContext.RouteData.Route == null || !(filterContext.RouteData.Route is LocalizeRoute))
-            //    return;
+            // ensures that this route is registered and localizable (LocalizedRoute in RouteProvider.cs)
+            if (filterContext.RouteData == null || filterContext.RouteData.Route == null || !(filterContext.RouteData.Route is LocalizedRoute))
+                return;
+
+            // process current URL
+            var pageUrl = filterContext.HttpContext.Request.RawUrl;
+            string applicationPath = filterContext.HttpContext.Request.ApplicationPath;
+            //if(pageUrl.Is)
         }
     }
 }
