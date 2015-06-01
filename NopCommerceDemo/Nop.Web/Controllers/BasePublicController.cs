@@ -1,5 +1,6 @@
 ﻿using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
+using Nop.Web.Framework.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Nop.Web.Controllers
     [StoreClosed]
     [PublicStoreAllowNavigation]
     [LanguageSeoCode]
-    //-->>
+    [NopHttpsRequirement(SslRequirement.NoMatter)]
     //-->>
     public class BasePublicController : BaseController
     {
