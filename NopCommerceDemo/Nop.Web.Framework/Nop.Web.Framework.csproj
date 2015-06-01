@@ -87,6 +87,7 @@
     <Compile Include="Mvc\NopModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicStoreAllowNavigationAttribute.cs" />
+    <Compile Include="Security\NopHttpsRequirementAttribute.cs" />
     <Compile Include="StoreClosedAttribute.cs" />
     <Compile Include="StoreIpAddressAttribute.cs" />
     <Compile Include="StoreLastVisitedPageAttribute.cs" />
