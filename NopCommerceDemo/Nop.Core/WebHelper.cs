@@ -3,10 +3,12 @@ using Nop.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Hosting;
 
 namespace Nop.Core
 {
@@ -162,7 +164,7 @@ namespace Nop.Core
             }
             else
             {
-                if(_httpContext.Request.Url!=null)
+                if (_httpContext.Request.Url != null)
                 {
                     url = _httpContext.Request.Url.GetLeftPart(UriPartial.Path);
                 }
@@ -236,7 +238,7 @@ namespace Nop.Core
                     result += "/";
             }
 
-            if(DataSettingsHelper.DatabaseIsInstalled())
+            if (DataSettingsHelper.DatabaseIsInstalled())
             {
                 #region Databse is installed
 
@@ -342,9 +344,23 @@ namespace Nop.Core
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Maps a virtual path to a physical disk path.
+        /// </summary>
+        /// <param name="path">The path to map. E.g. "~/bin"</param>
+        /// <returns>The physical path. E.g. "c:\inetpub\wwwroot\bin"</returns>
         public string MapPath(string path)
         {
-            throw new NotImplementedException();
+            if (HostingEnvironment.IsHosted)
+            {
+                // hosted
+                return HostingEnvironment.MapPath(path);
+            }
+
+            // not hosted. for example, run in unit tests
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
+            return Path.Combine(baseDirectory, path);
         }
 
         public string ModifyQueryString(string url, string queryStringModification, string anchor)

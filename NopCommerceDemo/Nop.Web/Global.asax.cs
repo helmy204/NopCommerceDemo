@@ -104,6 +104,9 @@ namespace Nop.Web
                     this.Response.Redirect(installUrl);
                 }
             }
+
+            if (!DataSettingsHelper.DatabaseIsInstalled())
+                return;
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

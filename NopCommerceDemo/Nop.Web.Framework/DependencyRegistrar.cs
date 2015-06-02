@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Integration.Mvc;
 using Nop.Core;
 using Nop.Core.Fakes;
 using Nop.Core.Infrastructure;
@@ -16,7 +17,7 @@ using System.Web;
 
 namespace Nop.Web.Framework
 {
-    public class DependencyRegistrar:IDependencyRegistrar
+    public class DependencyRegistrar : IDependencyRegistrar
     {
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
@@ -47,6 +48,7 @@ namespace Nop.Web.Framework
             builder.RegisterType<UserAgentHelper>().As<IUserAgentHelper>().InstancePerLifetimeScope();
 
             // controllers
+            builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
             // data layer
 
@@ -86,7 +88,7 @@ namespace Nop.Web.Framework
 
 
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
-            
+
             // Register event consumers
 
         }

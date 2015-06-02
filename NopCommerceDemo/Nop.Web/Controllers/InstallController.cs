@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Nop.Web.Controllers
 {
-    public class InstallController : Controller
+    public partial class InstallController : BasePublicController
     {
         #region Fields
 

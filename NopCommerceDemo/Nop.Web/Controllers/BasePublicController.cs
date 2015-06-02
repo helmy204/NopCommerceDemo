@@ -16,7 +16,7 @@ namespace Nop.Web.Controllers
     [LanguageSeoCode]
     [NopHttpsRequirement(SslRequirement.NoMatter)]
     [WwwRequirement]
-    public class BasePublicController : BaseController
+    public abstract partial class BasePublicController : BaseController
     {
 
     }
