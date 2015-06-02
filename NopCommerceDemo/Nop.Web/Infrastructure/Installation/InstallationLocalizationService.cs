@@ -15,7 +15,10 @@ namespace Nop.Web.Infrastructure.Installation
     /// </summary>
     public partial class InstallationLocalizationService : IInstallationLocalizationService
     {
-        //-->>
+        /// <summary>
+        /// Cookie name to language for the installation page
+        /// </summary>
+        private const string LanguageCookieName = "nop.installation.lang";
 
         /// <summary>
         /// Available languages
@@ -27,9 +30,49 @@ namespace Nop.Web.Infrastructure.Installation
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get current language for the installation page
+        /// </summary>
+        /// <returns>Current language</returns>
         public InstallationLanguage GetCurrentLanguage()
         {
-            throw new NotImplementedException();
+            var httpContext = EngineContext.Current.Resolve<HttpContextBase>();
+
+            var cookieLanguageCode = "";
+            var cookie = httpContext.Request.Cookies[LanguageCookieName];
+            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+                cookieLanguageCode = cookie.Value;
+
+            // ensure it's available (it could be delete since the previous installtion)
+            var availableLanguages = GetAvailableLanguages();
+
+            var language = availableLanguages
+                .FirstOrDefault(l => l.Code.Equals(cookieLanguageCode, StringComparison.InvariantCultureIgnoreCase));
+            if (language != null)
+                return language;
+
+            // let's find by current browser culture
+            if(httpContext.Request.UserLanguages!=null)
+            {
+                var userLanguage = httpContext.Request.UserLanguages.FirstOrDefault();
+                if (!String.IsNullOrEmpty(userLanguage))
+                {
+                    // right. we do "StartWith" (not "Equals") because we have shorten codes (not full culture names)
+                    language = availableLanguages
+                        .FirstOrDefault(l => userLanguage.StartsWith(l.Code, StringComparison.InvariantCultureIgnoreCase));
+                }
+            }
+            if (language != null)
+                return language;
+
+            // let's return the default one
+            language = availableLanguages.FirstOrDefault(l => l.IsDefault);
+            if (language != null)
+                return language;
+
+            // return any available language
+            language = availableLanguages.FirstOrDefault();
+            return language;
         }
 
         public void SaveCurrentLanguage(string languageCode)
