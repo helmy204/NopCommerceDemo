@@ -132,6 +132,19 @@
     <Content Include="App_Data\Localization\Installation\installation.vi.xml" />
     <Content Include="App_Data\Localization\Installation\installation.zhs.xml" />
     <Content Include="App_Data\uas_20140809-02.ini" />
+    <Content Include="Content\install\images\bg.gif" />
+    <Content Include="Content\install\images\bodybg.gif" />
+    <Content Include="Content\install\images\bottom.gif" />
+    <Content Include="Content\install\images\bottomleft.gif" />
+    <Content Include="Content\install\images\bottomright.gif" />
+    <Content Include="Content\install\images\install-synchronizing.gif" />
+    <Content Include="Content\install\images\left.gif" />
+    <Content Include="Content\install\images\right.gif" />
+    <Content Include="Content\install\images\top.gif" />
+    <Content Include="Content\install\images\topleft.gif" />
+    <Content Include="Content\install\images\topright.gif" />
+    <Content Include="Content\install\style.css" />
+    <Content Include="Content\install\style.rtl.css" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -171,7 +184,6 @@
     <Compile Include="Validators\Install\InstallValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
