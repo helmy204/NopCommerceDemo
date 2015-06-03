@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Localization
 {
-    interface ILocalizationService
+    /// <summary>
+    /// Localization manager interface
+    /// </summary>
+    public partial interface ILocalizationService
     {
     }
 }
