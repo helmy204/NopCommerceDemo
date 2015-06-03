@@ -25,9 +25,25 @@ namespace Nop.Web.Infrastructure.Installation
         /// </summary>
         private IList<InstallationLanguage> _availableLanguages;
 
+        /// <summary>
+        /// Get locale resource value
+        /// </summary>
+        /// <param name="resourceName">Resource name</param>
+        /// <returns>Resource value</returns>
         public string GetResource(string resourceName)
         {
-            throw new NotImplementedException();
+            var language = GetCurrentLanguage();
+            if (language == null)
+                return resourceName;
+            var resourceValue = language.Resources
+                .Where(r => r.Name.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase))
+                .Select(r => r.Value)
+                .FirstOrDefault();
+            if (String.IsNullOrEmpty(resourceValue))
+                // return name
+                return resourceName;
+
+            return resourceValue;
         }
 
         /// <summary>
@@ -52,7 +68,7 @@ namespace Nop.Web.Infrastructure.Installation
                 return language;
 
             // let's find by current browser culture
-            if(httpContext.Request.UserLanguages!=null)
+            if (httpContext.Request.UserLanguages != null)
             {
                 var userLanguage = httpContext.Request.UserLanguages.FirstOrDefault();
                 if (!String.IsNullOrEmpty(userLanguage))
