@@ -78,19 +78,227 @@
                                                     @Html.TextBoxFor(x => x.AdminEmail, new { @class = "textbox" })
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td nowrap="nowrap" align="left">
+                                                    <label for="AdminPassword">@ILS.GetResource("AdminPassword"):</label>
+                                                </td>
+                                                <td width="100%">
+                                                    @Html.PasswordFor(x => x.AdminPassword, new { @class = "textbox" })
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap="nowrap" align="left">
+                                                    <label for="ConfirmPassword">@ILS.GetResource("ConfirmPassword"):</label>
+                                                </td>
+                                                <td width="100%">
+                                                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "textbox" })
+                                                </td>
+                                            </tr>
+                                            @if (!Model.DisableSampleDataOption)
+                                            {
+                                            <tr>
+                                                <td nowrap="nowrap" align="left">
+                                                    <label for="InstallSampleData">@ILS.GetResource("CreateSampleData"):</label>
+                                                </td>
+                                                <td width="100%">
+                                                    @Html.CheckBoxFor(x => x.InstallSampleData)
+                                                </td>
+                                            </tr>
+                                            }
+                                            <tr>
+                                                <td colspan="2" align="left">
+                                                    <h3>@ILS.GetResource("DatabaseInformation")</h3>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            @if (!Model.DisableSqlCompact)
+                                            {
+                                            <tr>
+                                                <td colspan="2" align="left">
+                                                    @Html.RadioButton("DataProvider", "sqlce", (Model.DataProvider == "sqlce"), new { id = "provider_sqlce" })
+                                                    <label for="provider_sqlce">@ILS.GetResource("SqlCompact")</label>
+                                                </td>
+                                            </tr>
+                                            }
+                                            <tr>
+                                                <td colspan="2" align="left">
+                                                    @Html.RadioButton("DataProvider", "sqlserver", (Model.DataProvider == "sqlserver"), new { id = "provider_sqlserver" })
+                                                    <label for="provider_sqlserver">
+                                                        @ILS.GetResource("SqlStandard") <strong>@ILS.GetResource("Recommended")</strong>
+                                                    </label>
+                                                    <div id="sqlConnectionInfo">
+                                                        <br />
+                                                        <hr />
+                                                        <br />
+                                                        <div>
+                                                            <table>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="SqlServerCreateDatabase">
+                                                                            @ILS.GetResource("CreateDatabaseIfDoesNotExist"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.CheckBoxFor(x => x.SqlServerCreateDatabase)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <br />
+                                                        @Html.RadioButton("SqlConnectionInfo", "sqlconnectioninfo_values", (Model.SqlConnectionInfo == "sqlconnectioninfo_values"), new { id = "sqlconnectioninfo_values" })
+                                                        <label for="sqlconnectioninfo_values">
+                                                            @ILS.GetResource("ConnectionStringValues")
+                                                        </label>
+                                                        @Html.RadioButton("SqlConnectionInfo", "sqlconnectioninfo_raw", (Model.SqlConnectionInfo == "sqlconnectioninfo_raw"), new { id = "sqlconnectioninfo_raw" })
+                                                        <label for="sqlconnectioninfo_raw">
+                                                            @ILS.GetResource("RawConnectionString")
+                                                        </label>
+                                                        <div id="sqlDatabaseInfo">
+                                                            <table>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="SqlServerName">
+                                                                            @ILS.GetResource("SqlServerName"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.TextBoxFor(x => x.SqlServerName, new { @class = "textbox" })
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="SqlDatabaseName">
+                                                                            @ILS.GetResource("DatabaseName"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.TextBoxFor(x => x.SqlDatabaseName, new { @class = "textbox" })
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="left" colspan="2">
+                                                                        @Html.RadioButton("SqlAuthenticationType", "sqlauthentication", (Model.SqlAuthenticationType == "sqlauthentication"), new { id = "sqlauthenticationtype_sql" })
+                                                                        <label for="sqlauthenticationtype_sql">
+                                                                            @ILS.GetResource("SqlAuthentication")
+                                                                        </label>
+                                                                        @Html.RadioButton("SqlAuthenticationType", "windowsauthentication", (Model.SqlAuthenticationType == "windowsauthentication"), new { id = "sqlauthenticationtype_windows" })
+                                                                        <label for="sqlauthenticationtype_windows">
+                                                                            @ILS.GetResource("WindowsAuthentication")
+                                                                        </label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr id="pnlSqlServerUsername">
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="SqlServerUsername">
+                                                                            @ILS.GetResource("SqlServerUsername"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.TextBoxFor(x => x.SqlServerUsername, new { @class = "textbox" })
+                                                                    </td>
+                                                                </tr>
+                                                                <tr id="pnlSqlServerPassword">
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="SqlServerPassword">
+                                                                            @ILS.GetResource("SqlServerPassword"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.PasswordFor(x => x.SqlServerPassword, new { @class = "textbox" })
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div id="sqlDatabaseConnectionString">
+                                                            <span style="white-space:nowrap;">
+                                                                <label for="DatabaseConnectionString">
+                                                                    @ILS.GetResource("ConnectionString"):
+                                                                </label>
+                                                                @Html.TextBoxFor(x => x.DatabaseConnectionString, new { @class = "textbox", style = "width: 90%;" })
+                                                            </span>
+                                                            <br />
+                                                            <span class="hint">
+                                                                @ILS.GetResource("Example"):<br />
+                                                                Data source=sqlServerName;Initial Catalog=dbName;Persist Security Info=True;User
+                                                                ID=userName;Password=password
+                                                                <br />
+                                                                Find more info <a href="http://connectionstrings.com/" target="_blank">here</a>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <table>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" align="left">
+                                                                        <label for="UseCustomCollation">
+                                                                            @ILS.GetResource("CustomCollation"):
+                                                                        </label>
+                                                                    </td>
+                                                                    <td width="100%">
+                                                                        @Html.CheckBoxFor(x => x.UseCustomCollation)
+                                                                        @Html.TextBoxFor(x => x.Collation)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    @ILS.GetResource("Documentation1") <a href="http://docs.nopcommerce.com/display/nc/nopCommerce+Documentation?utm_source=installation-page&utm_medium=footer&utm_campaign=installation-page" target="_blank">@ILS.GetResource("Documentation2")</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">&nbsp;</td>
+                                            </tr>
                                         </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <div style="float:right; padding: 0px 10px 0px 0px;">
+                                            <input type="submit" value="@ILS.GetResource("Install")" style="width:100px;" />
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </td>
+                <td class="right"></td>
             </tr>
-
-
+            <tr class="Bottom">
+                <td class="left">&nbsp;</td>
+                <td class="center">&nbsp;</td>
+                <td class="right">&nbsp;</td>
+            </tr>
         </table>
+        <div class="container-footer">
+            <div style="text-align:left; padding:0px 0px 0px 0px; color:#606060; float:left;">
+                <a href="@Url.Action("RestartInstall","Install")" title="@ILS.GetResource("RestartInstallationTooltip")">
+                    @ILS.GetResource("RestartInstallation")
+                </a>
+            </div>
+            <div style="text-align:right; padding:0px 0px 0px 0px; color:#606060; float:right;">
+                @Html.DropDownList("language", Model.AvailableLanguages, new { onchange = "window.location.href = this.value;" })
+            </div>
+        </div>
+        <div class="throbber">
+            <div class="curtain"></div>
+            <div class="curtain-content">
+                <div>
+                    <h1 class="throbber-header">
+                        @ILS.GetResource("Installing")
+                    </h1>
+                    <p>
+                        <img src="@Url.Content("~/content/install/images/install-synchronizing.gif")" alt="" />
+                    </p>
+                </div>
+            </div>
+        </div>
     }
-
-
 </body>
 </html>
