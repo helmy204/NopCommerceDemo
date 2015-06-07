@@ -1,6 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Infrastructure;
+using Nop.Web.Framework.Security;
 using Nop.Web.Infrastructure.Installation;
 using Nop.Web.Models.Install;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
@@ -149,7 +151,16 @@ namespace Nop.Web.Controllers
             // the identity will be the anonymous user (typically IUSR_MACHINENAME) or the authenticated request user.
             var webHelper = EngineContext.Current.Resolve<IWebHelper>();
             // validate permissions
-            //var dirsToCheck=FilePermissionHelper
+            var dirsToCheck = FilePermissionHelper.GetDirectoriesWrite(webHelper);
+            foreach (string dir in dirsToCheck)
+                if (!FilePermissionHelper.CheckPermissions(dir, false, true, true, false))
+                    ModelState.AddModelError("", string.Format(_locService.GetResource("ConfigureDirectoryPermissions"), WindowsIdentity.GetCurrent().Name, dir));
+
+
+
+
+
+
 
             return View(model);
         }
