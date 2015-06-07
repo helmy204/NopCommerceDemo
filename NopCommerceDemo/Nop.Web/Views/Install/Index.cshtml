@@ -33,7 +33,74 @@
     @using (Html.BeginForm("Index", "Install", FormMethod.Post, new { id = "installation-form" }))
     {
         // Contributor: The orchard project. Thanks a lot!
-        <!---->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#installation-form').submit(function () {
+                    if ($('#installation-form').valid()) {
+                        window.setTimeout(function () {
+                            $(".throbber").show();
+                        }, 1000);
+
+                        $('input[type=submit]', this).attr('disabled', 'disabled');
+                    }
+                });
+            });
+
+            $(document).ready(function () {
+                $('input:radio[name=DataProvider]').click(toggleProvider);
+                $('input:radio[name=SqlConnectionInfo]').click(toggleSqlConnectionInfo);
+                $('input:radio[name=SqlAuthenticationType]').click(toggleSqlAuthenticationType);
+                $("input:checkbox[name=UseCustomCollation]").click(toggleCollation);
+
+                toggleProvider();
+                toggleSqlConnectionInfo();
+                toggleSqlAuthenticationType();
+                toggleCollation();
+            });
+
+            function toggleProvider() {
+                var selectProvider = $("input[name=DataProvider]:checked").attr('id');
+                if (selectProvider == 'provider_sqlce') {
+                    $('#sqlConnectionInfo').hide();
+                }
+                else if (selectProvider == 'provider_sqlserver') {
+                    $('#sqlConnectionInfo').show();
+                }
+            }
+
+            function toggleSqlConnectionInfo() {
+                var selectProvider = $("input[name=SqlConnectionInfo]:checked").attr('id');
+                if (selectProvider == 'sqlconnectioninfo_values') {
+                    $('#sqlDatabaseInfo').show();
+                    $('#sqlDatabaseConnectionString').hide();
+                }
+                else if (selectProvider == 'sqlconnectioninfo_raw') {
+                    $('#sqlDatabaseInfo').hide();
+                    $('#sqlDatabaseConnectionString').show();
+                }
+            }
+
+            function toggleSqlAuthenticationType() {
+                var selectProvider = $("input[name=SqlAuthenticationType]:checked").attr('id');
+                if (selectProvider == 'sqlauthenticationtype_sql') {
+                    $('#pnlSqlServerUsername').show();
+                    $('#pnlSqlServerPassword').show();
+                }
+                else if (selectProvider == 'sqlauthenticationtype_windows') {
+                    $('#pnlSqlServerUsername').hide();
+                    $('#pnlSqlServerPassword').hide();
+                }
+            }
+
+            function toggleCollation() {
+                if ($('#UseCustomCollation').is(':checked')) {
+                    $('#Collation').show();
+                }
+                else {
+                    $('#Collation').hide();
+                }
+            }
+        </script>
 
         <table border="0" cellpadding="0" cellspacing="0" class="container-installer">
             <tr class="top">
@@ -96,14 +163,14 @@
                                             </tr>
                                             @if (!Model.DisableSampleDataOption)
                                             {
-                                            <tr>
-                                                <td nowrap="nowrap" align="left">
-                                                    <label for="InstallSampleData">@ILS.GetResource("CreateSampleData"):</label>
-                                                </td>
-                                                <td width="100%">
-                                                    @Html.CheckBoxFor(x => x.InstallSampleData)
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td nowrap="nowrap" align="left">
+                                                        <label for="InstallSampleData">@ILS.GetResource("CreateSampleData"):</label>
+                                                    </td>
+                                                    <td width="100%">
+                                                        @Html.CheckBoxFor(x => x.InstallSampleData)
+                                                    </td>
+                                                </tr>
                                             }
                                             <tr>
                                                 <td colspan="2" align="left">
@@ -113,12 +180,12 @@
                                             </tr>
                                             @if (!Model.DisableSqlCompact)
                                             {
-                                            <tr>
-                                                <td colspan="2" align="left">
-                                                    @Html.RadioButton("DataProvider", "sqlce", (Model.DataProvider == "sqlce"), new { id = "provider_sqlce" })
-                                                    <label for="provider_sqlce">@ILS.GetResource("SqlCompact")</label>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left">
+                                                        @Html.RadioButton("DataProvider", "sqlce", (Model.DataProvider == "sqlce"), new { id = "provider_sqlce" })
+                                                        <label for="provider_sqlce">@ILS.GetResource("SqlCompact")</label>
+                                                    </td>
+                                                </tr>
                                             }
                                             <tr>
                                                 <td colspan="2" align="left">

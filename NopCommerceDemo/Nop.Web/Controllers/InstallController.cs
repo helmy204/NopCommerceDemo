@@ -72,6 +72,16 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult Index(InstallModel model)
+        {
+
+
+
+
+            return View(model);
+        }
+
         #endregion Methods
     }
 }
