@@ -8,7 +8,6 @@ using System.Web.Hosting;
 
 namespace Nop.Core.Data
 {
-    // TODO: Not finished
     public partial class DataSettingsManager
     {
         protected const char separator = ':';
@@ -75,6 +74,18 @@ namespace Nop.Core.Data
             return shellSettings;
         }
 
+        protected virtual string ComposeSettings(DataSettings settings)
+        {
+            if (settings == null)
+                return "";
+
+            return string.Format("DataProvider: {0}{2}DataConnectionString: {1}{2}",
+                                    settings.DataProvider,
+                                    settings.DataConnectionString,
+                                    Environment.NewLine
+                );
+        }
+
         /// <summary>
         /// Load Settings
         /// </summary>
@@ -94,6 +105,25 @@ namespace Nop.Core.Data
             }
 
             return new DataSettings();
+        }
+
+        public virtual void SaveSettings(DataSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+
+            // use webHelper.MapPath instead of HostingEnvironemnt.MapPath which is not available in unit tests
+            string filePath = Path.Combine(MapPath("~/App_Data/"), filename);
+            if (!File.Exists(filePath))
+            {
+                using (File.Create(filePath))
+                {
+                    // we use using to cloase the file after it's created
+                }
+            }
+
+            var text = ComposeSettings(settings);
+            File.WriteAllText(filePath, text);
         }
     }
 }

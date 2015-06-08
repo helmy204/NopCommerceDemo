@@ -10,9 +10,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Principal;
-using System.Threading;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace Nop.Web.Controllers
@@ -69,39 +67,15 @@ namespace Nop.Web.Controllers
         }
 
         /// <summary>
-        /// Creates a database on the server.
+        /// 
         /// </summary>
-        /// <param name="connectionString">Connection string</param>
-        /// <param name="collation">Server collation; the default one will be used if not specified</param>
-        /// <returns>Error</returns>
+        /// <param name="connectionString"></param>
+        /// <param name="collation"></param>
+        /// <returns></returns>
         [NonAction]
         protected string CreateDatabase(string connectionString, string collation)
         {
-            try
-            {
-                // parse database name
-                var builder = new SqlConnectionStringBuilder(connectionString);
-                var databaseName = builder.InitialCatalog;
-                // now create connection string to 'master' database. It always exists.
-                builder.InitialCatalog = "master";
-                var masterCatalogConnectionString = builder.ToString();
-                string query = string.Format("CREATE DATABASE [{0}]", databaseName);
-                if (!String.IsNullOrWhiteSpace(collation))
-                    query = string.Format("{0} COLLATE {1}", query, collation);
-                using (var conn = new SqlConnection(masterCatalogConnectionString))
-                {
-                    conn.Open();
-                    using (var command = new SqlCommand(query, conn))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                }
-                return string.Empty;
-            }
-            catch (Exception ex)
-            {
-                return string.Format(_locService.GetResource("DatabaseCreationError"), ex.Message);
-            }
+
         }
 
         /// <summary>
@@ -305,48 +279,9 @@ namespace Nop.Web.Controllers
                                 // create database
                                 var collation = model.UseCustomCollation ? model.Collation : "";
                                 var errorCreatingDatabase = CreateDatabase(connectionString, collation);
-                                if (!String.IsNullOrEmpty(errorCreatingDatabase))
-                                    throw new Exception(errorCreatingDatabase);
-
-                                // Database cannot be created sometimes. Weird! Seems to be Entity Framework issue
-                                // that's just wait 3 seconds
-                                Thread.Sleep(3000);
                             }
                         }
-                        else
-                        {
-                            // check whether database exists
-                            if (!SqlServerDatabaseExists(connectionString))
-                                throw new Exception(_locService.GetResource("DatabaseNotExists"));
-                        }
                     }
-                    else
-                    {
-                        // SQL CE
-                        string databaseFileName = "Nop.Db.sdf";
-                        string databasePath = @"|DataDirectory|\" + databaseFileName;
-                        connectionString = "Data Source=" + databasePath + ";Persist Security Info=False";
-
-                        // drop database if exists
-                        string databaseFullPath = HostingEnvironment.MapPath("~/App_Data/");
-                        if (System.IO.File.Exists(databaseFullPath))
-                        {
-                            System.IO.File.Delete(databaseFullPath);
-                        }
-                    }
-
-                    // save settings
-                    var dataProvider = model.DataProvider;
-                    var settings = new DataSettings
-                    {
-                        DataProvider = dataProvider,
-                        DataConnectionString = connectionString
-                    };
-                    settingsManager.SaveSettings(settings);
-
-                    // init data provider
-                    var dataProviderInstance = EngineContext.Current.Resolve<BaseDataProviderManager>().LoadDataProvider();
-
                 }
                 catch (Exception)
                 {
