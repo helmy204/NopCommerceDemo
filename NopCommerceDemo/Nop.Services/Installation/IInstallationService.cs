@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Nop.Services.Installation
 {
-    interface IInstallationService
+    public partial interface IInstallationService
     {
+        void InstallData(string defaultUserEmail, string defaultUserPassword, bool installSampleData = true);
     }
 }

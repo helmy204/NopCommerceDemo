@@ -1,6 +1,7 @@
 ﻿using Nop.Core;
 using Nop.Core.Data;
 using Nop.Core.Infrastructure;
+using Nop.Services.Installation;
 using Nop.Web.Framework.Security;
 using Nop.Web.Infrastructure.Installation;
 using Nop.Web.Models.Install;
@@ -350,18 +351,40 @@ namespace Nop.Web.Controllers
 
                     // now resolve installation service
                     var installationService = EngineContext.Current.Resolve<IInstallationService>();
+                    installationService.InstallData(model.AdminEmail, model.AdminPassword, model.InstallSampleData);
+
+                    // reset cache
+                    DataSettingsHelper.ResetCache();
+
+                    // install plugins
+                    //-->>
+
+                    // register default permissions
+                    //var permissionProviders = EngineContext.Current.Resolve<ITypeFinder>().FindClassesOfType<IPermissionProvider>();
+                    //-->>
+
+                    // restart application
+                    webHelper.RestartAppDomain();
+
+                    // redirect to home page
+                    return RedirectToRoute("HomePage");
 
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    // reset cache
+                    DataSettingsHelper.ResetCache();
 
-                    throw;
+                    // clear provider settings if something got wrong
+                    settingsManager.SaveSettings(new DataSettings
+                    {
+                        DataProvider=null,
+                        DataConnectionString=null
+                    });
+
+                    ModelState.AddModelError("", string.Format(_locService.GetResource("SetupFailed"), exception.Message));
                 }
             }
-
-
-
-
 
             return View(model);
         }
