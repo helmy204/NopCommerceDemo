@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Nop.Core.Data
 {
-    interface IDataProvider
+    /// <summary>
+    /// Data provider interface
+    /// </summary>
+    public interface IDataProvider
     {
+        //-->>
+        //-->>
+
+        /// <summary>
+        /// Initialize database
+        /// </summary>
+        void InitDatabase();
+
+        //-->>
+        //-->>
     }
 }

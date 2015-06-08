@@ -346,6 +346,10 @@ namespace Nop.Web.Controllers
 
                     // init data provider
                     var dataProviderInstance = EngineContext.Current.Resolve<BaseDataProviderManager>().LoadDataProvider();
+                    dataProviderInstance.InitDatabase();
+
+                    // now resolve installation service
+                    var installationService = EngineContext.Current.Resolve<IInstallationService>();
 
                 }
                 catch (Exception)
